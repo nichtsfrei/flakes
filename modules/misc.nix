@@ -120,30 +120,6 @@
 
 
   users.mutableUsers = true;
-  users.extraUsers.philipp = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "audio" "video" "networkmanager"  ];
-    shell = pkgs.fish;
-  };
-  users.users.philipp.packages = with pkgs; [
-    alacritty
-    pass
-    firefox
-    wl-clipboard
-    wofi
-    nodejs
-    tree-sitter
-    gh
-    rustup
-    xdg-utils
-    ripgrep
-    ccls
-    go
-    gcc
-    libcap
-    pavucontrol
-  ];
-
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.

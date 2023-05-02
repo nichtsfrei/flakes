@@ -16,6 +16,7 @@ in
       [ (import ./misc.nix) ] ++
       [ (import ./fish.nix) ] ++
       [ (import ./fonts.nix) ] ++
+      [ (import ./philipp.nix ) ] ++
       [ (import ./../hardware-configuration.nix) ];
   };
 }

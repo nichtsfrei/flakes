@@ -13,6 +13,7 @@
     shellInit = ''
       set PATH $PATH ~/.cargo/bin
       set PATH $PATH ~/.local/bin
+      set EDITOR nvim
     '';
     enable = true;
   };

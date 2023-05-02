@@ -14,6 +14,8 @@ in
     modules =
       [ (import ./bootloader.nix) ] ++
       [ (import ./misc.nix) ] ++
+      [ (import ./fish.nix) ] ++
+      [ (import ./fonts.nix) ] ++
       [ (import ./../hardware-configuration.nix) ];
   };
 }

@@ -101,7 +101,6 @@
      curl
      git
      tmux
-     any-nix-shell
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -119,10 +118,6 @@
   # move to desktop nix
   programs.hyprland.enable = true;
 
-  programs.fish.enable = true;
-  programs.fish.promptInit = ''
-    any-nix-shell fish --info-right | source
-  '';
 
   users.mutableUsers = true;
   users.extraUsers.philipp = {

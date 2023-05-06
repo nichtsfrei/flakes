@@ -19,7 +19,8 @@ in
             [(import ./packages.nix)] ++
             [(import ./waybar.nix)] ++
             [(import ./mako.nix)] ++
-            [(import ./hyprland/default.nix)] ++
+            [(import ./hyprland)] ++
+            [(import ./tmux)] ++
             [(import ./wofi)] ;
        home.username = username;
        home.homeDirectory = "/home/${username}";

@@ -21,7 +21,6 @@ in
             [(import ./mako.nix)] ++
             [(import ./hyprland)] ++
             [(import ./tmux)] ++
-            [(import ./fish.nix)] ++
             [(import ./wofi)] ;
        home.username = username;
        home.homeDirectory = "/home/${username}";

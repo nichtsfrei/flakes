@@ -1,9 +1,6 @@
 { inputs, nixpkgs, self, ... }:
 
 let
-  pkgs = import nixpkgs {
-    config.allowUnfree = true;
-  };
   lib = nixpkgs.lib;
 in
 {
@@ -13,6 +10,7 @@ in
     modules =
       [ (import ./bootloader.nix) ] ++
       [ (import ./misc.nix) ] ++
+      [ (import ./bluetooth.nix) ] ++
       [ (import ./fish.nix) ] ++
       [ (import ./fonts.nix) ] ++
       [ (import ./philipp.nix ) ] ++

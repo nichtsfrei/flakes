@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
@@ -21,7 +17,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   zramSwap.enable = true;
-  networking.hostName = "denkspatz"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -56,11 +51,6 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
-
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -70,16 +60,6 @@
       pulse.enable = true;
       # If you want to use JACK applications, uncomment this
       #jack.enable = true;
-  };
-  environment.etc = {
-	"wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
-		bluez_monitor.properties = {
-			["bluez5.enable-sbc-xq"] = true,
-			["bluez5.enable-msbc"] = true,
-			["bluez5.enable-hw-volume"] = true,
-			["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
-		}
-	'';
   };
 
   # Enable touchpad support (enabled default in most desktopManager).

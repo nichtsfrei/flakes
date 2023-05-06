@@ -1,6 +1,7 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
+  networking.hostName = "denkspatz"; # Define your hostname.
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 
 

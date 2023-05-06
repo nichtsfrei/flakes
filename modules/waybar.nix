@@ -22,9 +22,6 @@
         background-color: transparent;
       }
       window > box {
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 8px;
         border: 2px solid #206686;
         border-radius: 3px;
         background-color: rgba(30, 30, 46, 0.9);

@@ -3,7 +3,6 @@
 {
     home.packages = (with pkgs; [
         alacritty
-        brightnessctl
         pass
         firefox
         wl-clipboard

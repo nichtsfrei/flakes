@@ -19,6 +19,7 @@ in
             [(import ./packages.nix)] ++
             [(import ./waybar.nix)] ++
             [(import ./mako.nix)] ++
+            [(import ./gtk)] ++
             [(import ./hyprland)] ++
             [(import ./tmux)] ++
             [(import ./wofi)] ;
@@ -38,6 +39,7 @@ in
     extraGroups = [ "wheel" "audio" "video" "networkmanager"  ];
     shell = pkgs.fish;
   };
-  services.getty.autologinUser = "philipp";
-  nix.settings.allowed-users = [ "philipp" ];
+
+  services.getty.autologinUser = "${username}";
+  nix.settings.allowed-users = [ "${username}" ];
 }

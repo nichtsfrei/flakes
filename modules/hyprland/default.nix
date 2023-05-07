@@ -4,8 +4,6 @@
   xdg.configFile."hypr".source = ./config;
   home.packages = with pkgs;[
     brightnessctl
-    swww
-    hyprpicker
     swaylock-effects
     wlogout
     grim

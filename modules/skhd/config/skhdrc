@@ -1,0 +1,51 @@
+# left 50%
+alt - h : yabai -m window --focus west || yabai -m window --focus east
+alt - l : yabai -m window --focus east || yabai -m window --focus west
+# focus window in stacked
+# unfortunately skhd does not spawn dash but whatever shell is defined
+# in my case fish; although I like it when using it as tty I hate the scripting of it
+alt - j : sh -c "(yabai -m window --focus stack.next || yabai -m window --focus south) || (yabai -m window --focus stack.prev || yabai -m window --focus north)"
+alt - k : sh -c "(yabai -m window --focus stack.prev || yabai -m window --focus north) || (yabai -m window --focus stack.next || yabai -m window --focus south)"
+# swap managed window
+shift + alt - h : yabai -m window --swap west
+shift + alt - j : yabai -m window --swap south
+shift + alt - k : yabai -m window --swap north
+shift + alt - l : yabai -m window --swap east
+# increase window size
+shift + alt - a : yabai -m window --resize left:-20:0
+shift + alt - s : yabai -m window --resize right:-20:0
+
+# fullscreen
+alt - c: yabai -m window --toggle float; yabai -m window --grid 1:1:1:1:1:1
+# center 2/4
+ctrl + shift + alt - c: yabai -m window --toggle float; yabai -m window --grid 1:8:2:0:4:1
+# left 1/4
+ctrl + shift + alt - h: yabai -m window --toggle float; yabai -m window --grid 1:8:0:0:2:1
+# right 1/4
+ctrl + shift + alt - l: yabai -m window --toggle float; yabai -m window --grid 1:8:6:0:2:1
+
+shift + alt - f: yabai -m window --toggle native-fullscreen
+
+alt - s: yabai -m space --focus prev || yabai -m space --focus next
+alt - g: yabai -m space --focus next || yabai -m space --focus prev
+
+ctrl + alt - s: yabai -m display --focus west || yabai -m display --focus east
+ctrl + alt - g: yabai -m display --focus east || yabai -m display --focus west
+
+shift + alt - s : yabai -m window --space prev; yabai -m space --move prev;
+shift + alt - g : yabai -m window --space next; yabai -m space --move next;
+shift + ctrl + alt - s : yabai -m window --display west; yabai -m display --focus west;
+shift + ctrl + alt - g : yabai -m window --display east; yabai -m display --focus east;
+
+alt - t : yabai -m space --layout bsp
+alt - d : yabai -m space --layout stack
+
+# float / unfloat window and center on screen
+alt - n : yabai -m window --toggle float; \
+          yabai -m window --grid 4:4:1:1:2:2
+
+alt - p : yabai -m window --toggle sticky; \
+          yabai -m window --toggle topmost; \
+          yabai -m window --toggle pip
+
+shift + ctrl + alt -r : yabai --stop-service; yabai --start-service; skhd --stop-service; skhd --start-service

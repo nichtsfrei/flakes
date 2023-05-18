@@ -4,22 +4,15 @@
   hardware.enableAllFirmware = true;
   system.autoUpgrade.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.config = import ./../config.nix;
+
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
    '';
   };
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  zramSwap.enable = true;
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -53,6 +46,7 @@
   # Enable sound.
 
   security.rtkit.enable = true;
+# TODO move to sound
   services.pipewire = {
       enable = true;
       alsa.enable = true;
@@ -61,19 +55,6 @@
       # If you want to use JACK applications, uncomment this
       #jack.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.users.alice = {
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  #   packages = with pkgs; [
-  #     firefox
-  #     thunderbird
-  #   ];
-  # };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -95,9 +76,6 @@
   hardware.gpgSmartcards.enable = true;
   # move to editor
   #programs.neovim.enable = true;
-
-  # move to desktop nix
-  programs.hyprland.enable = true;
 
 
   users.mutableUsers = true;
@@ -125,6 +103,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
-
 }
 

@@ -1,15 +1,18 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-     any-nix-shell
+    any-nix-shell
   ];
   programs.fish = {
     promptInit = ''
-        any-nix-shell fish --info-right | source
+      any-nix-shell fish --info-right | source
     '';
-    loginShellInit = ''
-      set TTY1 (tty)
-      [ "$TTY1" = "/dev/tty1" ] && exec Hyprland
-    '';
+    shellAliases = {
+      nixswitch =
+        if pkgs.stdenv.hostPlatform.isDarwin
+        then "darwin-rebuild switch --flake ~/src/nichtsfrei/flakes/.#"
+        else "sudo nixos-rebuild switch --flake ~/src/nichtsfrei/flakes/.#";
+      nixup = "pushd ~/src/nichtsfrei/flakes; nix flake update; nixswitch; popd";
+    };
     shellInit = ''
       set PATH $PATH ~/.cargo/bin
       set PATH $PATH ~/.local/bin

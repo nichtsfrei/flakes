@@ -1,32 +1,34 @@
-{ config, lib, pkgs, modulesPath, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}: {
   networking.hostName = "denkspatz"; # Define your hostname.
   hardware.enableRedistributableFirmware = lib.mkDefault true;
-
-
   boot.initrd.luks.devices.root = {
     device = "/dev/disk/by-uuid/21261f27-9440-4c24-999e-8e3907c1a838";
   };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/68132e32-050b-4b37-9fc3-177c4fd4f397";
-      fsType = "btrfs";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/68132e32-050b-4b37-9fc3-177c4fd4f397";
+    fsType = "btrfs";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/A379-4EF5";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/A379-4EF5";
+    fsType = "vfat";
+  };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/1d31418f-b1e1-48ee-a170-7d521903d6c3"; }
-    ];
+  swapDevices = [
+    {device = "/dev/disk/by-uuid/1d31418f-b1e1-48ee-a170-7d521903d6c3";}
+  ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ "i915" "dm-snapshot" "acpi_call" ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
+  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod"];
+  boot.initrd.kernelModules = ["i915" "dm-snapshot" "acpi_call"];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = with config.boot.kernelPackages; [acpi_call];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -39,5 +41,4 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   #powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
 }

@@ -1,19 +1,12 @@
-{ inputs, pkgs, ... }:
-
 {
-  imports =
-    [ (import ./variables.nix) ];
-  xdg.configFile."hypr".source = ./config;
-  home.packages = with pkgs;[
-    swaylock-effects
-    wlogout
-    grim
-    slurp
-    wl-clipboard
-    wf-recorder
-    glib
-    wayland
-    direnv
-  ];
-}
+  inputs,
+  pkgs,
+  ...
+}: {
+  programs.hyprland.enable = true;
 
+  programs.fish.loginShellInit = ''
+    set TTY1 (tty)
+    [ "$TTY1" = "/dev/tty1" ] && exec Hyprland
+  '';
+}

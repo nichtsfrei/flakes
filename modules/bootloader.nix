@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+# TODO rename to linux defaults?
+    
+  zramSwap.enable = true;
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   boot = {
     tmp.cleanOnBoot = true;
     # kernelPackages = pkgs.linuxPackages_zen;

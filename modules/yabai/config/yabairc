@@ -1,0 +1,41 @@
+# Use yabai as window management without auto tiling.
+# That way I don't have to deal with rectangle and a like.
+# default layout (can be bsp, stack or float)
+sudo yabai --load-sa || true
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa" || true
+
+# borders
+yabai -m config window_border on
+yabai -m config window_border_width 2
+yabai -m config window_border_radius 0
+yabai -m config window_border_blur off
+yabai -m config active_window_border_color 0xCCCCCCCC
+yabai -m config normal_window_border_color 0x00FFFFFF
+yabai -m config insert_feedback_color 0xffd75f5f
+yabai -m config window_shadow off
+
+yabai -m config layout bsp
+yabai -m config auto_balance off
+yabai -m config window_topmost on
+
+# gaps
+yabai -m config top_padding    0
+yabai -m config bottom_padding 0
+yabai -m config left_padding   0
+yabai -m config right_padding  0
+yabai -m config window_gap     0
+# rules
+yabai -m rule --add app="^System Preferences$" manage=off
+
+# workspace management
+yabai -m space 1 --label term
+yabai -m space 2 --label entertainment
+yabai -m rule --add app="Alacritty" space=term
+yabai -m rule --add app="Firefox" space=term
+yabai -m rule --add app="Music" space=entertainment
+yabai -m rule --add app="TV" space=entertainment
+yabai -m rule --add app="TV" manage=off
+yabai -m rule --add app="Prime Video" space=entertainment
+yabai -m rule --add app="PrimeVideo" manage=off
+echo "yabai configuration loaded.."
+

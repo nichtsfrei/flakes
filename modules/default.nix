@@ -8,6 +8,7 @@ in
     specialArgs = { inherit self inputs; };
     # TODO move all but denkspatz to an own module
     modules =
+      [ inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480 ] ++
       [ (import ./bootloader.nix) ] ++
       [ (import ./misc.nix) ] ++
       [ (import ./bluetooth.nix) ] ++

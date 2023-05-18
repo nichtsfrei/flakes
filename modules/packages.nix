@@ -18,5 +18,6 @@
         gcc
         libcap
         pavucontrol
+        brightnessctl
     ]);
 }

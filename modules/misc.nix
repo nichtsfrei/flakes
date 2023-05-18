@@ -81,6 +81,7 @@
      curl
      git
      tmux
+     vim
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -93,7 +94,7 @@
 
   hardware.gpgSmartcards.enable = true;
   # move to editor
-  programs.neovim.enable = true;
+  #programs.neovim.enable = true;
 
   # move to desktop nix
   programs.hyprland.enable = true;

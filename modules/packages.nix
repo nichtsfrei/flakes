@@ -1,7 +1,7 @@
 { pkgs, ...}:
 
 {
-    home.packages = (with pkgs; [
+    home.packages = with pkgs; [
         alacritty
         pass
         firefox
@@ -19,5 +19,6 @@
         libcap
         pavucontrol
         brightnessctl
-    ]);
+        penvim
+    ];
 }

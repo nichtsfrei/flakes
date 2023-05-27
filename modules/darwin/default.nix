@@ -253,7 +253,7 @@
     # TODO may toggle?
     masApps = {
       "Amazon Prime Video" = 545519333;
-      "Xcode" = 497799835;
+      #"Xcode" = 497799835;
     };
     taps = [
       "homebrew/services"

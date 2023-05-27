@@ -73,6 +73,33 @@
         };
     };
     darwinConfigurations = {
+      zygomatic = let
+        user = {
+          handle = "philippeder";
+          name = "Philipp Eder";
+          email = "philipp.eder@greenbone.net";
+        };
+        hmextraimports = [
+          ./modules/darwin-hm-link-applications.nix
+          ./modules/yabai
+          ./modules/skhd
+        ];
+        brewextracasks = ["zoom"];
+        hostName = "zygomatic";
+      in
+        inputs.darwin.lib.darwinSystem {
+          pkgs = mkPkgs "aarch64-darwin";
+          specialArgs = {
+            inherit self inputs system user hmextraimports brewextracasks hostName;
+          };
+          modules = [
+            ./modules/darwin
+            ./modules/fonts.nix
+            ./modules/fish.nix
+            inputs.home-manager.darwinModules.home-manager
+            ./modules/user.nix
+          ];
+        };
       angstspatz = let
         user = {
           handle = "philipp";

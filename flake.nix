@@ -47,7 +47,6 @@
           ./modules/mako.nix
           ./modules/gtk
           ./modules/hyprland/hm.nix
-          ./modules/tmux
           ./modules/wofi
         ];
       in
@@ -61,6 +60,7 @@
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
             ./modules/bootloader.nix
             ./modules/misc.nix
+            ./modules/sound.nix
             ./modules/bluetooth.nix
             ./modules/fish.nix
             ./modules/fonts.nix

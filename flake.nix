@@ -71,6 +71,32 @@
             ./denkspatz.nix
           ];
         };
+      devvm1 = let
+        user = {
+          handle = "philipp";
+          name = "Philipp Eder";
+          email = "philipp.eder@posteo.net";
+        };
+        hmextraimports = [
+        ];
+      in
+        nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          pkgs = mkPkgs "aarch64-linux";
+
+          specialArgs = {inherit self inputs user hmextraimports;};
+          # TODO move all but denkspatz to an own module
+          modules = [
+            ./modules/bootloader.nix
+            ./modules/misc.nix
+            ./modules/fish.nix
+            ./modules/fonts.nix
+            inputs.home-manager.nixosModules.home-manager
+            ./modules/user.nix
+            ./modules/linuxuser.nix
+            ./devvm1.nix
+          ];
+        };
     };
     darwinConfigurations = {
       zygomatic = let

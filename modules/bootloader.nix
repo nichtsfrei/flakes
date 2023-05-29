@@ -1,13 +1,11 @@
-{ pkgs, ... }:
-{
-# TODO rename to linux defaults?
-    
+{pkgs, ...}: {
+  # TODO rename to linux defaults?
+
   zramSwap.enable = true;
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   boot = {
     tmp.cleanOnBoot = true;
-    # kernelPackages = pkgs.linuxPackages_zen;
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages;
     plymouth = {
       enable = false;
     };

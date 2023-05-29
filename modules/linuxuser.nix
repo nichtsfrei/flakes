@@ -8,7 +8,7 @@
   ...
 }: let
   username = user.handle;
-  name = user.name;
+  inherit (user) name;
 in {
   users.users.${username} = {
     isNormalUser = true;

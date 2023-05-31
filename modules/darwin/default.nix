@@ -2,6 +2,7 @@
   pkgs,
   brewextracasks,
   hostName,
+  user,
   ...
 }: {
   # here go the darwin preferences and config items
@@ -29,6 +30,7 @@
   system.keyboard.remapCapsLockToEscape = false;
   fonts.fontDir.enable = true;
   services.nix-daemon.enable = true;
+  users.users.${user.handle}.home = "/Users/${user.handle}";
 
   system.defaults = {
     #

@@ -71,7 +71,7 @@
             ./denkspatz.nix
           ];
         };
-      devvm1 = let
+      simspatz = let
         user = {
           handle = "philipp";
           name = "Philipp Eder";
@@ -94,7 +94,7 @@
             inputs.home-manager.nixosModules.home-manager
             ./modules/user.nix
             ./modules/linuxuser.nix
-            ./devvm1.nix
+            ./simspatz.nix
           ];
         };
     };

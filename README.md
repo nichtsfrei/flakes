@@ -19,10 +19,6 @@ Mainly because it is not worth it.
 
 ## Setup
 
-Currently broken with kernel 6.3.3.
-
-switching to fedora and using nix seems easier.
-
 On utm:
 
 ```

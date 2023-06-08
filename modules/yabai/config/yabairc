@@ -16,7 +16,7 @@ yabai -m config window_shadow off
 
 yabai -m config layout bsp
 yabai -m config auto_balance off
-yabai -m config window_topmost on
+yabai -m config window_topmost off
 
 # gaps
 yabai -m config top_padding    0
@@ -28,11 +28,11 @@ yabai -m config window_gap     0
 yabai -m rule --add app="^System Preferences$" manage=off
 
 # workspace management
-yabai -m space 1 --label term
+yabai -m space 1 --label main
 yabai -m space 2 --label entertainment
-yabai -m rule --add app="Alacritty" space=term
-yabai -m rule --add app="Firefox" space=term
+yabai -m config --space entertainment layout float
 yabai -m rule --add app="Music" space=entertainment
+yabai -m rule --add app="Music" manage=off
 yabai -m rule --add app="TV" space=entertainment
 yabai -m rule --add app="TV" manage=off
 yabai -m rule --add app="Prime Video" space=entertainment

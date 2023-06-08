@@ -12,8 +12,8 @@ shift + alt - j : yabai -m window --swap south
 shift + alt - k : yabai -m window --swap north
 shift + alt - l : yabai -m window --swap east
 # increase window size
-shift + alt - a : yabai -m window --resize left:-20:0
-shift + alt - s : yabai -m window --resize right:-20:0
+shift + alt - e : yabai -m window --resize left:-20:0
+shift + alt - d : yabai -m window --resize right:-20:0
 
 # fullscreen
 alt - c: yabai -m window --toggle float; yabai -m window --grid 1:1:1:1:1:1

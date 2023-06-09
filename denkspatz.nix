@@ -41,4 +41,13 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   #powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  services = {
+    printing.enable = true;
+    # it still works, HL-2130 the only good decision in my 20s.
+    printing.drivers = with pkgs; [brlaser];
+    # just in case the printer doesn't outlive me.
+    avahi.enable = true;
+    avahi.nssmdns = true;
+    avahi.openFirewall = true;
+  };
 }

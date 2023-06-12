@@ -75,7 +75,7 @@
         user = {
           handle = "philipp";
           name = "Philipp Eder";
-          email = "philipp.eder@posteo.net";
+          email = "philipp.eder@greenbone.net";
         };
         hmextraimports = [
         ];
@@ -85,7 +85,6 @@
           pkgs = mkPkgs "aarch64-linux";
 
           specialArgs = {inherit self inputs user hmextraimports;};
-          # TODO move all but denkspatz to an own module
           modules = [
             ./modules/bootloader.nix
             ./modules/misc.nix

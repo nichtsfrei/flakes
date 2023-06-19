@@ -26,16 +26,15 @@ yabai -m config right_padding  0
 yabai -m config window_gap     0
 # rules
 yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="Music" manage=off
+yabai -m rule --add app="TV" manage=off
+yabai -m rule --add app="PrimeVideo" manage=off
 
 # workspace management
+# TODO write a script to detect if 1 or multiple screens are connected
+# based on that set space1 - space2 on screen 1 and space3 on screen 2
+# otherwise space2 will be on the second screen.
 yabai -m space 1 --label main
-yabai -m space 2 --label entertainment
-yabai -m config --space entertainment layout float
-yabai -m rule --add app="Music" space=entertainment
-yabai -m rule --add app="Music" manage=off
-yabai -m rule --add app="TV" space=entertainment
-yabai -m rule --add app="TV" manage=off
-yabai -m rule --add app="Prime Video" space=entertainment
-yabai -m rule --add app="PrimeVideo" manage=off
+yabai -m space 2 --label secondary
 echo "yabai configuration loaded.."
 

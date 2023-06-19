@@ -135,7 +135,7 @@
           ./modules/yabai
           ./modules/skhd
         ];
-        brewextracasks = ["zoom"];
+        brewextracasks = ["zoom" "docker"];
         hostName = "zygomatic";
       in
         inputs.darwin.lib.darwinSystem {

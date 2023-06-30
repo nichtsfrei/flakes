@@ -89,6 +89,7 @@
             ./modules/bootloader.nix
             ./modules/misc.nix
             ./modules/fish.nix
+            ./modules/k3s.nix
             ./modules/fonts.nix
             inputs.home-manager.nixosModules.home-manager
             ./modules/user.nix

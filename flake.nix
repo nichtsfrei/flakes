@@ -136,12 +136,13 @@
           ./modules/skhd
         ];
         brewextracasks = ["zoom" "docker"];
+        brewextrapackages = ["helm"];
         hostName = "zygomatic";
       in
         inputs.darwin.lib.darwinSystem {
           pkgs = mkPkgs "aarch64-darwin";
           specialArgs = {
-            inherit self inputs system user hmextraimports brewextracasks hostName;
+            inherit self inputs system user hmextraimports brewextracasks brewextrapackages hostName;
           };
           modules = [
             ./modules/darwin
@@ -163,12 +164,13 @@
           ./modules/skhd
         ];
         brewextracasks = ["steam" "origin"];
+        brewextrapackages = [];
         hostName = "angstspatz";
       in
         inputs.darwin.lib.darwinSystem {
           pkgs = mkPkgs "aarch64-darwin";
           specialArgs = {
-            inherit self inputs system user hmextraimports brewextracasks hostName;
+            inherit self inputs system user hmextraimports brewextracasks brewextrapackages hostName;
           };
           modules = [
             ./modules/darwin

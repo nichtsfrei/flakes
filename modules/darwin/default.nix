@@ -1,6 +1,7 @@
 {
   pkgs,
   brewextracasks,
+  brewextrapackages,
   hostName,
   user,
   ...
@@ -19,7 +20,6 @@
       '';
     };
   };
-
 
   # enable password less loading of dock control for yabai to enable
   # switching screens, spaces for admin users
@@ -261,7 +261,7 @@
       "homebrew/services"
       "koekeishiya/formulae"
     ];
-    brews = ["gpg" "skhd" "yabai"];
+    brews = ["gpg" "skhd" "yabai"] ++ brewextrapackages;
     # TODO add toggle
     casks = ["firefox" "utm"] ++ brewextracasks;
   };

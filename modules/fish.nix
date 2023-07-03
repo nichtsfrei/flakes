@@ -9,7 +9,7 @@
     shellAliases = {
       nixswitch =
         if pkgs.stdenv.hostPlatform.isDarwin
-        then "darwin-rebuild switch --flake ~/src/nichtsfrei/flakes/.#"
+        then "darwin-rebuild switch --impure --flake ~/src/nichtsfrei/flakes/.#"
         else "sudo nixos-rebuild switch --flake ~/src/nichtsfrei/flakes/.#";
       nixup = "pushd ~/src/nichtsfrei/flakes; nix flake update; nixswitch; popd";
     };

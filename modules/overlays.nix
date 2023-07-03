@@ -1,8 +1,4 @@
-{
-  inputs,
-  nixpkgs,
-  ...
-}: {
+{inputs, ...}: {
   overlays = [
     # channels
     (final: prev: {

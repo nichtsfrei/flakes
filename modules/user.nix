@@ -38,7 +38,6 @@ in {
       imports =
         [
           ./alacritty.nix
-          ./tmux
         ]
         ++ hmextraimports;
     };

@@ -1,9 +1,10 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   hardware.enableAllFirmware = true;
   system.autoUpgrade.enable = true;
-
 
   nixpkgs.config = import ./../config.nix;
 
@@ -11,7 +12,7 @@
     package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
-   '';
+    '';
   };
 
   # Set your time zone.
@@ -32,7 +33,6 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-
   # Configure keymap in X11
   # services.xserver.layout = "us";
   # services.xserver.xkbOptions = {
@@ -48,31 +48,29 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     curl
-     git
-     tmux
-     vim
+    curl
+    git
+    zellij
+    vim
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   programs.gnupg.agent = {
-     enable = true;
-     enableSSHSupport = true;
+    enable = true;
+    enableSSHSupport = true;
   };
 
   hardware.gpgSmartcards.enable = true;
   # move to editor
   #programs.neovim.enable = true;
 
-
   users.mutableUsers = true;
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -93,4 +91,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
 }
-

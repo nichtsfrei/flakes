@@ -15,9 +15,12 @@
     fd
     curl
     less
-    penvim
     pass
+    clang-tools
     rustup
+    marksman
+    nil
+    helix
     gh
     jq
   ];
@@ -38,6 +41,7 @@ in {
       imports =
         [
           ./alacritty.nix
+          ./helix
         ]
         ++ hmextraimports;
     };

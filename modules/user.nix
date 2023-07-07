@@ -19,6 +19,7 @@
     clang-tools
     rustup
     marksman
+    ltex-ls
     nil
     helix
     gh

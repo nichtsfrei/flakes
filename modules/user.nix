@@ -18,10 +18,8 @@
     pass
     clang-tools
     rustup
-    marksman
-    ltex-ls
     nil
-    helix
+    penvim
     gh
     jq
   ];
@@ -42,7 +40,6 @@ in {
       imports =
         [
           ./alacritty.nix
-          ./helix
         ]
         ++ hmextraimports;
     };

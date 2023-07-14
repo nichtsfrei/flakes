@@ -11,7 +11,7 @@
   environment = {
     shells = with pkgs; [bash fish];
     loginShell = pkgs.fish;
-    systemPackages = with pkgs; [vim zellij coreutils];
+    systemPackages = with pkgs; [vim tmux coreutils];
     systemPath = ["/opt/homebrew/bin"];
     pathsToLink = ["/Applications"];
     etc."sudoers.d/yabai" = {

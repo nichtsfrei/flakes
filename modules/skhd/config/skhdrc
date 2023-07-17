@@ -35,5 +35,5 @@ hyper - g : yabai -m window --space next; yabai -m space --move next;
 hyper - z : yabai -m window --display west; yabai -m display --focus west;
 hyper - b : yabai -m window --display east; yabai -m display --focus east;
 
-hyper - t : yabai -m space --layout bsp
-hyper - d : yabai -m space --layout stack
+hyper - r : yabai -m space --layout bsp
+hyper - v : yabai -m space --layout stack

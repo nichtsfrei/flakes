@@ -246,8 +246,8 @@
     enable = true;
 
     onActivation = {
-      autoUpdate = false;
-      upgrade = false;
+      autoUpdate = true;
+      upgrade = true;
       cleanup = "zap"; # remove everything not listed here
     };
     caskArgs.no_quarantine = true;

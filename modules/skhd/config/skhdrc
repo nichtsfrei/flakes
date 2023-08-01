@@ -18,9 +18,9 @@ hyper - d : yabai -m window --resize right:-20:0
 # center 2/4
 hyper - c: yabai -m window --toggle float; yabai -m window --grid 1:8:2:0:4:1
 # left 1/4
-hyper - h: yabai -m window --toggle float; yabai -m window --grid 1:8:0:0:2:1
+hyper - t: yabai -m window --toggle float; yabai -m window --grid 1:8:0:0:2:1
 # right 1/4
-hyper - l: yabai -m window --toggle float; yabai -m window --grid 1:8:6:0:2:1
+hyper - y: yabai -m window --toggle float; yabai -m window --grid 1:8:6:0:2:1
 
 hyper - f: yabai -m window --toggle native-fullscreen
 

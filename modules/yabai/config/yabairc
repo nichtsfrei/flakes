@@ -24,11 +24,6 @@ yabai -m config bottom_padding 0
 yabai -m config left_padding   0
 yabai -m config right_padding  0
 yabai -m config window_gap     0
-# rules
-yabai -m rule --add app="^System Preferences$" manage=off
-yabai -m rule --add app="Music" manage=off
-yabai -m rule --add app="TV" manage=off
-yabai -m rule --add app="PrimeVideo" manage=off
 
 # workspace management
 # TODO write a script to detect if 1 or multiple screens are connected

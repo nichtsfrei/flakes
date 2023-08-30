@@ -18,8 +18,10 @@
     pass
     clang-tools
     rustup
+    nodejs
     nil
-    penvim
+    neovim
+    helix
     gh
     jq
   ];
@@ -41,6 +43,7 @@ in {
         [
           ./alacritty.nix
           ./tmux
+	  ./nvim
         ]
         ++ hmextraimports;
     };

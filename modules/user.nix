@@ -41,9 +41,6 @@ in {
       programs.git.userEmail = email;
       imports =
         [
-          ./alacritty.nix
-          ./tmux
-	  ./nvim
         ]
         ++ hmextraimports;
     };

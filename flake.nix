@@ -161,9 +161,6 @@
         };
         hmextraimports = [
           ./modules/darwin-hm-link-applications.nix
-          ./modules/yabai
-          ./modules/skhd
-          ./modules/helix
         ];
         brewextracasks = ["steam" "origin"];
         brewextrapackages = [];

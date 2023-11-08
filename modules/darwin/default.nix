@@ -263,6 +263,6 @@
     ];
     brews = ["gpg" "skhd" "yabai" ] ++ brewextrapackages;
     # TODO add toggle
-    casks = ["firefox" "utm"] ++ brewextracasks;
+    casks = ["firefox" "utm" "kitty" ] ++ brewextracasks;
   };
 }

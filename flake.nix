@@ -133,7 +133,6 @@
         };
         hmextraimports = [
           ./modules/darwin-hm-link-applications.nix
-          ./modules/yabai
           ./modules/skhd
         ];
         brewextracasks = ["zoom" "docker"];
@@ -162,7 +161,7 @@
         hmextraimports = [
           ./modules/darwin-hm-link-applications.nix
         ];
-        brewextracasks = ["steam" "origin"];
+        brewextracasks = ["steam" "origin" "vlc" "zoom" "calibre" "element" "libreoffice" ];
         brewextrapackages = [];
         hostName = "angstspatz";
       in

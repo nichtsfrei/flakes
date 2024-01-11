@@ -14,14 +14,8 @@
     systemPackages = with pkgs; [vim tmux coreutils];
     systemPath = ["/opt/homebrew/bin"];
     pathsToLink = ["/Applications"];
-    etc."sudoers.d/yabai" = {
-      text = ''
-        %admin ALL=(root) NOPASSWD: /opt/homebrew/bin/yabai --load-sa
-      '';
-    };
   };
 
-  # enable password less loading of dock control for yabai to enable
   # switching screens, spaces for admin users
   nix.extraOptions = ''
     experimental-features = nix-command flakes
@@ -260,9 +254,9 @@
     taps = [
       "homebrew/services"
       "koekeishiya/formulae"
+      "homebrew/cask-fonts"
     ];
-    brews = ["gpg" "skhd" "yabai" ] ++ brewextrapackages;
-    # TODO add toggle
-    casks = ["firefox" "utm" "kitty" ] ++ brewextracasks;
+    brews = ["gpg" "skhd" "python" ] ++ brewextrapackages;
+    casks = ["firefox" "utm" "font-monaspace" "alacritty"] ++ brewextracasks;
   };
 }

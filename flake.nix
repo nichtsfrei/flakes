@@ -132,7 +132,6 @@
           email = "philipp.eder@greenbone.net";
         };
         hmextraimports = [
-          ./modules/darwin-hm-link-applications.nix
           ./modules/skhd
         ];
         brewextracasks = ["zoom" "docker"];
@@ -159,7 +158,6 @@
           email = "philipp.eder@posteo.net";
         };
         hmextraimports = [
-          ./modules/darwin-hm-link-applications.nix
         ];
         brewextracasks = ["steam" "origin" "vlc" "zoom" "calibre" "element" "libreoffice" ];
         brewextrapackages = [];

@@ -5,7 +5,7 @@
   system.autoUpgrade.enable = true;
 
 
-  nixpkgs.config = import ./../config.nix;
+  # nixpkgs.config = import ./../config.nix;
 
   nix = {
     package = pkgs.nixFlakes;
@@ -51,7 +51,7 @@
      curl
      git
      tmux
-     vim
+     neovim
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -61,8 +61,21 @@
      enable = true;
      enableSSHSupport = true;
   };
+  services.xserver.enable = true;
+
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+
+  # Configure keymap in X11
+  services.xserver = {
+    layout = "us";
+    xkbVariant = "";
+  };
+
 
   hardware.gpgSmartcards.enable = true;
+  hardware.pulseaudio.enable = false;
   # move to editor
   #programs.neovim.enable = true;
 

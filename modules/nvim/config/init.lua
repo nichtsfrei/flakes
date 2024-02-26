@@ -80,10 +80,6 @@ require('lazy').setup({
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
-      { 'williamboman/mason.nvim', config = true },
-      'williamboman/mason-lspconfig.nvim',
-
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
@@ -97,49 +93,33 @@ require('lazy').setup({
     -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-
       -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
 
-      -- Adds a number of user-friendly snippets
-      'rafamadriz/friendly-snippets',
+      -- Adds LSP completion capabilities
+      'hrsh7th/cmp-path',
     },
   },
 
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',  opts = {} },
+  -- {
+  --   'nyoom-engineering/oxocarbon.nvim',
+  --   priority = 1000,
+  --   config = function()
+  --     vim.o.background = 'light'
+  --     vim.cmd.colorscheme 'oxocarbon'
+  --   end
+  -- },
+
   {
-    -- Adds git related signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      -- See `:help gitsigns.txt`
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-      on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
-          { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
-        vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
-        vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
-      end,
-    },
-  },
-  {
-    'nyoom-engineering/oxocarbon.nvim',
+    'NLKNguyen/papercolor-theme',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'oxocarbon'
+      vim.o.background = 'light'
+      vim.cmd.colorscheme 'PaperColor'
     end
   },
-
-
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -147,21 +127,10 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
---        theme = 'oxocarbon',
+        --        theme = 'oxocarbon',
         component_separators = '|',
         section_separators = '',
       },
-    },
-  },
-
-  {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
     },
   },
 
@@ -197,9 +166,27 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+  {
+    'simrat39/rust-tools.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'mfussenegger/nvim-dap',
+    }
+  },
+  --   {
+  --   'huggingface/llm.nvim',
+  --   opts = {
+  --     -- cf Setup
+  --   }
+  -- },
+	
+  { "David-Kunz/gen.nvim" },
+  
 
- 
-}, {})
+
+}, {
+  lockfile = vim.fn.stdpath("data") .. '/lazy-lock.json',
+})
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -281,28 +268,20 @@ require('telescope').setup {
 pcall(require('telescope').load_extension, 'fzf')
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] Fuzzily search in current buffer' })
 
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+vim.keymap.set('n', '<leader>g', require('telescope.builtin').git_files, { desc = 'Search [G]it Files' })
+vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { desc = 'Search [F]iles' })
+vim.keymap.set('n', '<leader>?', require('telescope.builtin').help_tags, { desc = '[?] Help' })
+vim.keymap.set('n', '<leader>w', require('telescope.builtin').grep_string, { desc = 'Search current [W]ord' })
+vim.keymap.set('n', '<leader>/', require('telescope.builtin').live_grep, { desc = '[/] Search by Grep' })
+vim.keymap.set('n', '<leader>i', require('telescope.builtin').diagnostics, { desc = 'Search D[i]agnostics' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'vim' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
@@ -352,15 +331,15 @@ require('nvim-treesitter.configs').setup {
         ['[]'] = '@class.outer',
       },
     },
-    swap = {
-      enable = true,
-      swap_next = {
-        ['<leader>a'] = '@parameter.inner',
-      },
-      swap_previous = {
-        ['<leader>A'] = '@parameter.inner',
-      },
-    },
+    -- swap = {
+    --   enable = true,
+    --   swap_next = {
+    --     ['<leader>a'] = '@parameter.inner',
+    --   },
+    --   swap_previous = {
+    --     ['<leader>A'] = '@parameter.inner',
+    --   },
+    -- },
   },
 }
 
@@ -387,8 +366,8 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  nmap('<leader>r', vim.lsp.buf.rename, 'Re[n]ame')
+  nmap('<leader>a', vim.lsp.buf.code_action, 'Code [A]ction')
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
@@ -426,10 +405,10 @@ end
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  -- clangd = {},
+  clangd = {},
   -- gopls = {},
   -- pyright = {},
-  -- rust_analyzer = {},
+  rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
@@ -441,6 +420,16 @@ local servers = {
   },
 }
 
+local lspconfig = require('lspconfig')
+for key,value in pairs(servers) do 
+  lspconfig[key].setup({
+      on_attach = on_attach,
+      settings = value,
+      filetypes = value.filetypes,
+
+  })
+end
+
 -- Setup neovim lua configuration
 require('neodev').setup()
 
@@ -448,37 +437,12 @@ require('neodev').setup()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
--- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
-
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
-
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-    }
-  end
-}
-
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
 local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-require('luasnip.loaders.from_vscode').lazy_load()
-luasnip.config.setup {}
+
 
 cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
   mapping = cmp.mapping.preset.insert {
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-p>'] = cmp.mapping.select_prev_item(),
@@ -492,8 +456,6 @@ cmp.setup {
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
       else
         fallback()
       end
@@ -501,18 +463,52 @@ cmp.setup {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.locally_jumpable(-1) then
-        luasnip.jump(-1)
       else
         fallback()
       end
     end, { 'i', 's' }),
   },
   sources = {
+    { name = 'path' },
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
   },
 }
 
+
+-- didn't find out how to run that api in front of ollama
+-- local llm = require('llm')
+-- llm.setup({
+--   api_token = nil, -- cf Install paragraph
+--   -- point to local address
+--   model = "bigcode/starcoder", -- can be a model ID or an http(s) endpoint
+--   tokens_to_clear = { "<|endoftext|>" }, -- tokens to remove from the model's output
+--   -- parameters that are added to the request body
+--   query_params = {
+--     max_new_tokens = 60,
+--     temperature = 0.2,
+--     top_p = 0.95,
+--     stop_tokens = nil,
+--   },
+--   -- set this if the model supports fill in the middle
+--   fim = {
+--     enabled = true,
+--     prefix = "<fim_prefix>",
+--     middle = "<fim_middle>",
+--     suffix = "<fim_suffix>",
+--   },
+--   debounce_ms = 150,
+--   accept_keymap = "<Tab>",
+--   dismiss_keymap = "<S-Tab>",
+--   tls_skip_verify_insecure = false,
+--   -- llm-ls configuration, cf llm-ls section
+--   lsp = {
+--     bin_path = nil,
+--     version = "0.4.0",
+--   },
+--   tokenizer = nil, -- cf Tokenizer paragraph
+--   context_window = 8192, -- max number of tokens for the context window
+--   enable_suggestions_on_startup = true,
+--   enable_suggestions_on_files = "*", -- pattern matching syntax to enable suggestions on specific files, either a string or a list of strings
+-- })
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 
+-- vim: ts=2 sts=2 sw=2

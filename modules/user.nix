@@ -11,6 +11,7 @@
   username = user.handle;
   inherit (user) email;
   packages = with pkgs; [
+    clang
     ripgrep
     fd
     curl

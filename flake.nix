@@ -34,6 +34,39 @@
     #
 
     nixosConfigurations = {
+      tischspatz = let
+        user = {
+          handle = "philipp";
+          name = "Philipp Eder";
+          email = "philipp.eder@posteo.net";
+        };
+        hmextraimports = [
+          ./modules/packages.nix
+	  ./modules/nvim
+	  ./modules/tmux
+        ];
+      in
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          pkgs = mkPkgs "x86_64-linux";
+
+          specialArgs = {inherit self inputs user hmextraimports;};
+          # TODO move all but tischspatz to an own module
+          modules = [
+            ./modules/bootloader.nix
+            ./modules/misc.nix
+            ./modules/sound.nix
+            ./modules/bluetooth.nix
+            ./modules/fish.nix
+            ./modules/fonts.nix
+            inputs.home-manager.nixosModules.home-manager
+            ./modules/user.nix
+            ./modules/linuxuser.nix
+            ./tischspatz.nix
+          ];
+        };
+
+
       denkspatz = let
         user = {
           handle = "philipp";

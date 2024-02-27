@@ -1,8 +1,6 @@
 {
   pkgs,
   inputs,
-  lib,
-  config,
   user,
   hmextraimports,
   ...
@@ -11,8 +9,14 @@
   username = user.handle;
   inherit (user) email;
   packages = with pkgs; [
+    python3
+    gcc-arm-embedded
+    dfu-util
+    qmk
+    gnumake
     clang
     ripgrep
+    file
     fd
     curl
     less
@@ -32,10 +36,8 @@ in {
     extraSpecialArgs = {inherit inputs;};
     users.${username} = {
       home.username = username;
-      #home.homeDirectory = "/home/${username}";
       home.stateVersion = "22.11";
       home.packages = packages;
-      #       programs.home-manager.enable = true;
       programs.git.enable = true;
       programs.git.userName = name;
       programs.git.userEmail = email;

@@ -101,17 +101,6 @@ require('lazy').setup({
     },
   },
 
-  -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
-  -- {
-  --   'nyoom-engineering/oxocarbon.nvim',
-  --   priority = 1000,
-  --   config = function()
-  --     vim.o.background = 'light'
-  --     vim.cmd.colorscheme 'oxocarbon'
-  --   end
-  -- },
-
   {
     'NLKNguyen/papercolor-theme',
     priority = 1000,
@@ -173,16 +162,6 @@ require('lazy').setup({
       'mfussenegger/nvim-dap',
     }
   },
-  --   {
-  --   'huggingface/llm.nvim',
-  --   opts = {
-  --     -- cf Setup
-  --   }
-  -- },
-	
-  { "David-Kunz/gen.nvim" },
-  
-
 
 }, {
   lockfile = vim.fn.stdpath("data") .. '/lazy-lock.json',
@@ -411,6 +390,7 @@ local servers = {
   rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  nil_ls = {},
 
   lua_ls = {
     Lua = {
@@ -446,27 +426,10 @@ cmp.setup {
   mapping = cmp.mapping.preset.insert {
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-y>'] = cmp.mapping.confirm { select = true, },
     ['<C-Space>'] = cmp.mapping.complete {},
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
   },
   sources = {
     { name = 'path' },
@@ -475,40 +438,3 @@ cmp.setup {
 }
 
 
--- didn't find out how to run that api in front of ollama
--- local llm = require('llm')
--- llm.setup({
---   api_token = nil, -- cf Install paragraph
---   -- point to local address
---   model = "bigcode/starcoder", -- can be a model ID or an http(s) endpoint
---   tokens_to_clear = { "<|endoftext|>" }, -- tokens to remove from the model's output
---   -- parameters that are added to the request body
---   query_params = {
---     max_new_tokens = 60,
---     temperature = 0.2,
---     top_p = 0.95,
---     stop_tokens = nil,
---   },
---   -- set this if the model supports fill in the middle
---   fim = {
---     enabled = true,
---     prefix = "<fim_prefix>",
---     middle = "<fim_middle>",
---     suffix = "<fim_suffix>",
---   },
---   debounce_ms = 150,
---   accept_keymap = "<Tab>",
---   dismiss_keymap = "<S-Tab>",
---   tls_skip_verify_insecure = false,
---   -- llm-ls configuration, cf llm-ls section
---   lsp = {
---     bin_path = nil,
---     version = "0.4.0",
---   },
---   tokenizer = nil, -- cf Tokenizer paragraph
---   context_window = 8192, -- max number of tokens for the context window
---   enable_suggestions_on_startup = true,
---   enable_suggestions_on_files = "*", -- pattern matching syntax to enable suggestions on specific files, either a string or a list of strings
--- })
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2

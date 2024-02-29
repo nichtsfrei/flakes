@@ -29,6 +29,8 @@
     gh
     jq
     wezterm
+    stylua
+    lua-language-server
   ];
 in {
   home-manager = {

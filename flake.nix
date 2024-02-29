@@ -35,7 +35,7 @@
         hmextraimports = [
           ./modules/packages.nix
 	  ./modules/nvim
-	  ./modules/tmux
+	  ./modules/wezterm
         ];
       in
         nixpkgs.lib.nixosSystem {

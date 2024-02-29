@@ -9,25 +9,17 @@
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    penvim.url = "github:nichtsfrei/penvim";
   };
 
   outputs = {
     nixpkgs,
-    penvim,
     self,
     ...
   } @ inputs: let
-    inherit (nixpkgs) lib system;
+    inherit (nixpkgs) system;
     mkPkgs = system:
       import nixpkgs {
         inherit system;
-        inherit
-          (import ./modules/overlays.nix {
-            inherit inputs nixpkgs;
-          })
-          overlays
-          ;
         config = import ./config.nix;
       };
   in {

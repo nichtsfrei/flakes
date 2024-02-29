@@ -28,6 +28,7 @@
     neovim
     gh
     jq
+    wezterm
   ];
 in {
   home-manager = {

@@ -5,6 +5,7 @@
   programs.fish = {
     promptInit = ''
       any-nix-shell fish --info-right | source
+      fish_config theme choose "ayu Light"
     '';
     shellAliases = {
       nixswitch =
@@ -17,6 +18,7 @@
       set PATH $PATH ~/.cargo/bin
       set PATH $PATH ~/.local/bin
       set EDITOR nvim
+
     '';
     enable = true;
   };

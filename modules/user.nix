@@ -8,6 +8,7 @@
   inherit (user) name;
   username = user.handle;
   inherit (user) email;
+  # TODO provide predefined definitions instead of hardcoding here
   packages = with pkgs; [
     python3
     gcc-arm-embedded
@@ -31,6 +32,7 @@
     wezterm
     stylua
     lua-language-server
+    libsForQt5.ksshaskpass
   ];
 in {
   home-manager = {

@@ -4,8 +4,8 @@ let
 in
 
 # TODO: create self containing flake
-pkgs.mkShellNoCC {
-  packages = with pkgs; [
+pkgs.mkShell {
+  nativeBuildInputs = with pkgs.buildPackages; [
     file
     libpcap
     hiredis

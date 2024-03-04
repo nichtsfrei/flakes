@@ -196,11 +196,11 @@ require("lazy").setup({
 	},
 
 	{
-		"NLKNguyen/papercolor-theme",
+		"shaunsingh/solarized.nvim",
 		priority = 1000,
 		config = function()
 			vim.o.background = "light"
-			vim.cmd.colorscheme("PaperColor")
+			vim.cmd.colorscheme("solarized")
 		end,
 	},
 	{
@@ -309,7 +309,11 @@ vim.o.mouse = "a"
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = "unnamedplus"
+-- vim.o.clipboard = "unnamedplus"
+vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste over selected text" })
+-- next greatest remap ever : asbjornHaland
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- Enable break indent
 vim.o.breakindent = true

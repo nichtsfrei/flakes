@@ -33,6 +33,9 @@
     stylua
     lua-language-server
     libsForQt5.ksshaskpass
+    typos
+    gimp
+    wl-clipboard
   ];
 in {
   home-manager = {

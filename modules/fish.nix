@@ -5,7 +5,7 @@
   programs.fish = {
     promptInit = ''
       any-nix-shell fish --info-right | source
-      fish_config theme choose "ayu Light"
+      fish_config theme choose "Solarized Light"
     '';
     shellAliases = {
       nixswitch =

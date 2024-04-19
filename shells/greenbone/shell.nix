@@ -15,6 +15,7 @@ pkgs.mkShell {
     redis
     pkg-config
     zlib
+    cmake
   ];
 }
 

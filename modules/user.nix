@@ -15,7 +15,8 @@
     dfu-util
     qmk
     gnumake
-    clang
+#    clang
+    gcc
     ripgrep
     file
     fd
@@ -36,6 +37,16 @@
     typos
     gimp
     wl-clipboard
+    python311Packages.huggingface-hub
+    llm-ls
+    distrobox
+    #ollama
+    zoom-us
+    pyright
+    krita
+    gimp
+    inkscape
+    docker-compose
   ];
 in {
   home-manager = {

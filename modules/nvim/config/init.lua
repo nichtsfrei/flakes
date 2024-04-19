@@ -88,25 +88,25 @@ require("lazy").setup({
 			"folke/neodev.nvim",
 		},
 	},
-	{ -- Autoformat
-		"stevearc/conform.nvim",
-		opts = {
-			notify_on_error = false,
-			format_on_save = {
-				timeout_ms = 500,
-				lsp_fallback = true,
-			},
-			formatters_by_ft = {
-				lua = { "stylua" },
-				-- Conform can also run multiple formatters sequentially
-				-- python = { "isort", "black" },
-				--
-				-- You can use a sub-list to tell conform to run *until* a formatter
-				-- is found.
-				-- javascript = { { "prettierd", "prettier" } },
-			},
-		},
-	},
+	-- { -- Autoformat
+	-- 	"stevearc/conform.nvim",
+	-- 	opts = {
+	-- 		notify_on_error = false,
+	-- 		format_on_save = {
+	-- 			timeout_ms = 500,
+	-- 			lsp_fallback = true,
+	-- 		},
+	-- 		formatters_by_ft = {
+	-- 			lua = { "stylua" },
+	-- 			-- Conform can also run multiple formatters sequentially
+	-- 			-- python = { "isort", "black" },
+	-- 			--
+	-- 			-- You can use a sub-list to tell conform to run *until* a formatter
+	-- 			-- is found.
+	-- 			-- javascript = { { "prettierd", "prettier" } },
+	-- 		},
+	-- 	},
+	-- },
 
 	{
 		-- Autocompletion
@@ -196,10 +196,13 @@ require("lazy").setup({
 	},
 
 	{
-		"shaunsingh/solarized.nvim",
+		"maxmx03/solarized.nvim",
 		priority = 1000,
 		config = function()
-			vim.o.background = "light"
+			vim.o.background = "dark"
+			require("solarized").setup({
+				transparent = true,
+			})
 			vim.cmd.colorscheme("solarized")
 		end,
 	},
@@ -210,7 +213,7 @@ require("lazy").setup({
 		opts = {
 			options = {
 				icons_enabled = false,
-				--        theme = 'oxocarbon',
+				theme = "solarized",
 				component_separators = "|",
 				section_separators = "",
 			},
@@ -246,6 +249,7 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
+			"nvim-treesitter/nvim-treesitter-context",
 		},
 		build = ":TSUpdate",
 	},
@@ -313,7 +317,7 @@ vim.o.mouse = "a"
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste over selected text" })
 -- next greatest remap ever : asbjornHaland
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set("n", "<leader>y", [["+Y]])
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -321,9 +325,8 @@ vim.o.breakindent = true
 -- Save undo history
 vim.o.undofile = true
 
--- Case-insensitive searching UNLESS \C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.o.ignorecase = false
+vim.o.smartcase = false
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = "yes"
@@ -439,15 +442,15 @@ require("nvim-treesitter.configs").setup({
 				["[]"] = "@class.outer",
 			},
 		},
-		-- swap = {
-		--   enable = true,
-		--   swap_next = {
-		--     ['<leader>a'] = '@parameter.inner',
-		--   },
-		--   swap_previous = {
-		--     ['<leader>A'] = '@parameter.inner',
-		--   },
-		-- },
+		swap = {
+			enable = true,
+			swap_next = {
+				["<leader>a"] = "@parameter.inner",
+			},
+			swap_previous = {
+				["<leader>A"] = "@parameter.inner",
+			},
+		},
 	},
 })
 
@@ -474,8 +477,8 @@ local on_attach = function(_, bufnr)
 		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
 	end
 
-	nmap("<leader>r", vim.lsp.buf.rename, "Re[n]ame")
-	nmap("<leader>a", vim.lsp.buf.code_action, "Code [A]ction")
+	nmap("<leader>cr", vim.lsp.buf.rename, "Re[n]ame")
+	nmap("<leader>ca", vim.lsp.buf.code_action, "Code [A]ction")
 
 	nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
 	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")

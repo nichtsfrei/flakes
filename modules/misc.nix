@@ -53,7 +53,7 @@
      tmux
      neovim
      # TODO: should probably defined in an other module. As this is not a default requirement
-     k3s
+     libwacom
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -64,10 +64,10 @@
      enableSSHSupport = true;
   };
   services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma6.enable = true;
+  #services.xserver.displayManager.ssdm.enable = true;
+  #services.desktopManager.plasma6.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -90,13 +90,14 @@
 
   hardware.keyboard.qmk.enable = true;
   virtualisation = {
-    podman = {
-      enable = true;
-      # Create a `docker` alias for podman, to use it as a drop-in replacement
-      dockerCompat = true;
-      # Required for containers under podman-compose to be able to talk to each other.
-      defaultNetwork.settings.dns_enabled = true;
-    };
+    # podman = {
+    #   enable = true;
+    #   # Create a `docker` alias for podman, to use it as a drop-in replacement
+    #   dockerCompat = true;
+    #   # Required for containers under podman-compose to be able to talk to each other.
+    #   defaultNetwork.settings.dns_enabled = true;
+    # };
+    docker.enable = true;
   };
   
   # exclude to k3s.nix  
@@ -107,11 +108,6 @@
   ];
   networking.firewall.allowedUDPPorts = [
     # 8472 # k3s, flannel: required if using multi-node for inter-node networking
-  ];
-  services.k3s.enable = false;
-  services.k3s.role = "server";
-  services.k3s.extraFlags = toString [
-    # "--kubelet-arg=v=4" # Optionally add additional args to k3s
   ];
 
   # Open ports in the firewall.

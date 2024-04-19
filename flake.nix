@@ -35,7 +35,10 @@
         hmextraimports = [
           ./modules/packages.nix
 	  ./modules/nvim
-	  ./modules/wezterm
+#	  ./modules/wezterm
+          ./modules/tmux
+#          ./modules/kde
+          #./modules/kde-autostart
         ];
       in
         nixpkgs.lib.nixosSystem {
@@ -47,11 +50,13 @@
           modules = [
             ./modules/bootloader.nix
             ./modules/misc.nix
+            ./modules/k3s.nix
             ./modules/sound.nix
             ./modules/bluetooth.nix
             ./modules/fish.nix
             ./modules/fonts.nix
             inputs.home-manager.nixosModules.home-manager
+            
             ./modules/user.nix
             ./modules/linuxuser.nix
             ./tischspatz.nix

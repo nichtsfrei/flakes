@@ -13,6 +13,6 @@ in {
   users.users.${username} = {
     isNormalUser = true;
     description = name;
-    extraGroups = ["wheel" "audio" "video" "networkmanager" "docker" ];
+    extraGroups = ["wheel" "audio" "video" "networkmanager" "docker" "libvirtd" "qemu-libvirtd" ];
   };
 }

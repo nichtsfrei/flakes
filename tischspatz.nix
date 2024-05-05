@@ -6,8 +6,8 @@
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelModules = [ "kvm-amd" ];
+  #boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelModules = [ "kvm" "kvm-amd"];
   boot.extraModulePackages = [ ];
   networking.hostName = "tischspatz"; # Define your hostname.
 
@@ -47,7 +47,8 @@
 
    programs.steam.enable = true;
    
-   virtualisation.libvirtd.enable = true;
+
+
    programs.virt-manager.enable = true;
 
 #  programs.nix-ld.enable = true;

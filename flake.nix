@@ -1,6 +1,7 @@
 {
   description = "nichtsfrei's nixos configuration";
   inputs = {
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -33,12 +34,15 @@
           email = "philipp.eder@posteo.net";
         };
         hmextraimports = [
-          ./modules/packages.nix
 	  ./modules/nvim
-#	  ./modules/wezterm
-          ./modules/tmux
+	  ./modules/wezterm
 #          ./modules/kde
           #./modules/kde-autostart
+          ./modules/waybar.nix
+          ./modules/mako.nix
+      #    ./modules/gtk
+          ./modules/hyprland/hm.nix
+          ./modules/wofi
         ];
       in
         nixpkgs.lib.nixosSystem {
@@ -48,18 +52,19 @@
           specialArgs = {inherit self inputs user hmextraimports;};
           # TODO move all but tischspatz to an own module
           modules = [
+            ./tischspatz.nix
             ./modules/bootloader.nix
             ./modules/misc.nix
-            ./modules/k3s.nix
+            #./modules/k3s.nix
             ./modules/sound.nix
             ./modules/bluetooth.nix
             ./modules/fish.nix
             ./modules/fonts.nix
+            ./modules/hyprland
             inputs.home-manager.nixosModules.home-manager
             
             ./modules/user.nix
             ./modules/linuxuser.nix
-            ./tischspatz.nix
           ];
         };
 

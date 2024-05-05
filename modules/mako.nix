@@ -4,7 +4,7 @@
   services = {
     mako = {
       enable = true;
-      font = "FiraCode Nerd Font 11";
+      font = "MonaSpiceNE Nerd Font 11";
       padding = "20";
       defaultTimeout = 5000;
       borderSize = 2;

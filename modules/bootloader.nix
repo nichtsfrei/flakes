@@ -5,7 +5,7 @@
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   boot = {
     tmp.cleanOnBoot = true;
-    kernelPackages = pkgs.linuxPackages;
+    kernelPackages = pkgs.linuxPackages_latest;
     plymouth = {
       enable = false;
     };

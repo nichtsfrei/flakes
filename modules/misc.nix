@@ -5,8 +5,6 @@
   system.autoUpgrade.enable = true;
 
 
-  # nixpkgs.config = import ./../config.nix;
-
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
@@ -14,14 +12,8 @@
    '';
   };
 
-  # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   # console = {
   #   font = "Lat2-Terminus16";
@@ -29,31 +21,39 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = {
-  #   "eurosign:e";
-  #   "caps:escape" # map caps to escape.
-  # };
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
+     libwacom
      curl
      git
-     tmux
      neovim
-     # TODO: should probably defined in an other module. As this is not a default requirement
-     libwacom
+     python3
+     gcc-arm-embedded
+     dfu-util
+     qmk
+     gnumake
+  # currently we need to decide between, which is a bit annoying
+  #   clang
+     gcc
+     ripgrep
+     file
+     fd
+     less
+     pass
+     clang-tools
+     rustup
+     nodejs
+     nil
+     jq
+     stylua
+     lua-language-server
+     typos
+     python311Packages.huggingface-hub
+     llm-ls
+     distrobox
+     #ollama
+     pyright
+     docker-compose
+
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -63,18 +63,6 @@
      enable = true;
      enableSSHSupport = true;
   };
-  services.xserver.enable = true;
-  #services.xserver.displayManager.ssdm.enable = true;
-  #services.desktopManager.plasma6.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
 
   hardware.gpgSmartcards.enable = true;
   hardware.pulseaudio.enable = false;
@@ -90,6 +78,7 @@
 
   hardware.keyboard.qmk.enable = true;
   virtualisation = {
+   libvirtd.enable = true;
     # podman = {
     #   enable = true;
     #   # Create a `docker` alias for podman, to use it as a drop-in replacement
@@ -101,11 +90,6 @@
   };
   
   # exclude to k3s.nix  
-  networking.firewall.allowedTCPPorts = [
-    6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
-    # 2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
-    # 2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
-  ];
   networking.firewall.allowedUDPPorts = [
     # 8472 # k3s, flannel: required if using multi-node for inter-node networking
   ];
@@ -114,7 +98,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

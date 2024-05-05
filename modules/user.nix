@@ -8,45 +8,7 @@
   inherit (user) name;
   username = user.handle;
   inherit (user) email;
-  # TODO provide predefined definitions instead of hardcoding here
   packages = with pkgs; [
-    python3
-    gcc-arm-embedded
-    dfu-util
-    qmk
-    gnumake
-#    clang
-    gcc
-    ripgrep
-    file
-    fd
-    curl
-    less
-    pass
-    clang-tools
-    rustup
-    nodejs
-    nil
-    neovim
-    gh
-    jq
-    wezterm
-    stylua
-    lua-language-server
-    libsForQt5.ksshaskpass
-    typos
-    gimp
-    wl-clipboard
-    python311Packages.huggingface-hub
-    llm-ls
-    distrobox
-    #ollama
-    zoom-us
-    pyright
-    krita
-    gimp
-    inkscape
-    docker-compose
   ];
 in {
   home-manager = {

@@ -10,7 +10,7 @@ return {
 	-- Appearance --
 	----------------
 	window_background_opacity = 0.97,
-	color_scheme = "Solarized (light) (terminal.sexy)",
+	color_scheme = "Solarized Dark (Gogh)",
 
 	inactive_pane_hsb = {
 		saturation = 0.9,
@@ -23,6 +23,7 @@ return {
 	-- How many lines of scrollback you want to retain per tab
 	scrollback_lines = 3500,
 	enable_scroll_bar = false,
+	enable_wayland = false;
 
 	-----------
 	-- Fonts --
@@ -36,7 +37,7 @@ return {
 	-- Keys  --
 	-----------
 	-- change here to key="b", mods="CMD" for ^+b equivalent in tmux.
-	leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 },
+	leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
 	keys = {
 		-- Window management
 		{ key = "-", mods = "LEADER", action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },

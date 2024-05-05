@@ -11,7 +11,7 @@
     };
     style = ''
       * {
-      font-family: FiraCode Nerd Font;
+      font-family: MonaspiceNE Nerd Font;
       font-weight: normal;
       font-size: 13.5px;
       min-height: 0;
@@ -81,7 +81,7 @@
       "layer" = "top";
       "position" = "top";
       modules-left = [
-        "wlr/workspaces"
+        "hyprland/workspaces"
         "battery"
         "idle_inhibitor"
       ];
@@ -108,7 +108,7 @@
         "path" = "/home";
         "format" = "󰋊 {percentage_used}%";
       };
-      "wlr/workspaces" = {
+      "hyprland/workspaces" = {
         "format" = "{icon}";
         "on-click" = "activate";
       };

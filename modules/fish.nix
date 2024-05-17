@@ -22,7 +22,9 @@
       set PATH $PATH ~/.cargo/bin
       set PATH $PATH ~/.local/bin
       set EDITOR nvim
-
+      function es
+        nix-shell $HOME/src/nichtsfrei/flakes/shells/$argv/shell.nix
+      end
     '';
     enable = true;
   };

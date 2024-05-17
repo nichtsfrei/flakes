@@ -12,7 +12,6 @@
       slurp
       wl-clipboard
       wf-recorder
-      # narf
       zoom-us
       # graphical stuff
       gimp
@@ -20,6 +19,9 @@
       gimp
       inkscape
       firefox
+      hyprlock
+      hypridle
+      hyprpaper
     ];
 
   

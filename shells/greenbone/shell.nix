@@ -16,6 +16,9 @@ pkgs.mkShell {
     pkg-config
     zlib
     cmake
+    glib
+    json-glib
+    gnutls
   ];
 }
 

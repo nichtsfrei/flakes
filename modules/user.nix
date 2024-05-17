@@ -9,6 +9,7 @@
   username = user.handle;
   inherit (user) email;
   packages = with pkgs; [
+     gh
   ];
 in {
   home-manager = {

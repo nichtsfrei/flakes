@@ -12,7 +12,7 @@
     style = ''
       * {
       font-family: MonaspiceNE Nerd Font;
-      font-weight: normal;
+      font-weight: bold;
       font-size: 13.5px;
       min-height: 0;
       transition-property: background-color;
@@ -23,8 +23,8 @@
       }
       window > box {
         border: 2px solid #206686;
-        border-radius: 3px;
-        background-color: rgba(30, 30, 46, 0.9);
+        border-radius: 1px;
+        background-color: rgba(1, 1, 1, 0.9);
       }
       #workspaces {
         padding-left: 0px;
@@ -79,20 +79,20 @@
     '';
     settings = [{
       "layer" = "top";
-      "position" = "top";
+      "position" = "bottom";
       modules-left = [
         "hyprland/workspaces"
         "battery"
         "idle_inhibitor"
       ];
       modules-center = [
+        "memory"
         "clock"
+        "cpu"
       ];
       modules-right = [
         "pulseaudio"
         "pulseaudio#microphone"
-        "memory"
-        "cpu"
         "disk"
         "network"
         "tray"
@@ -148,13 +148,13 @@
       };
       "cpu" = {
         "interval" = 1;
-        "format" = " {usage}%";
+        "format" = " {usage}%";
       };
       "network" = {
         "interval" = 1;
-        "format" = "說 Connected({ifname})";
+        "format" = "  {ifname}";
         "format-alt" = "  {bandwidthUpBytes}    {bandwidthDownBytes}";
-        "format-disconnected" = "說 Disconnected";
+        "format-disconnected" = "󰅛 Disconnected";
         "tooltip" = false;
       };
       "temperature" = {

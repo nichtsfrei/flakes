@@ -12,16 +12,25 @@
       slurp
       wl-clipboard
       wf-recorder
+      hyprlock
+      hypridle
+      hyprpaper
+      # game mod stuff probably best to create a steam module?
+      p7zip
+      protontricks
+      gnome.zenity
+      lutris-unwrapped
+
+
+      # work stuff
       zoom-us
       # graphical stuff
       gimp
       krita
       gimp
       inkscape
+      # browser
       firefox
-      hyprlock
-      hypridle
-      hyprpaper
     ];
 
   

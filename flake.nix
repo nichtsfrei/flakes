@@ -61,6 +61,7 @@
             ./modules/fish.nix
             ./modules/fonts.nix
             ./modules/hyprland
+            ./modules/steam.nix
             inputs.home-manager.nixosModules.home-manager
             
             ./modules/user.nix

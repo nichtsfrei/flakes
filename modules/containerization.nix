@@ -3,14 +3,6 @@
 {
   hardware.enableAllFirmware = true;
   system.autoUpgrade.enable = true;
-  boot.binfmt.registrations.appimage = {
-    wrapInterpreterInShell = false;
-    interpreter = "${pkgs.appimage-run}/bin/appimage-run";
-    recognitionType = "magic";
-    offset = 0;
-    mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
-    magicOrExtension = ''\x7fELF....AI\x02'';
-  };
 
 
   nix = {
@@ -39,7 +31,6 @@
      dfu-util
      qmk
      gnumake
-      fzf
   # currently we need to decide between, which is a bit annoying
   #   clang
      gcc
@@ -62,7 +53,6 @@
      #ollama
      pyright
      docker-compose
-     appimage-run
 
   ];
 

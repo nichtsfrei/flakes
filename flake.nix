@@ -36,13 +36,13 @@
         hmextraimports = [
 	  ./modules/nvim
 	  ./modules/wezterm
-#          ./modules/kde
+          ./modules/kde
           #./modules/kde-autostart
-          ./modules/waybar.nix
-          ./modules/mako.nix
+      #    ./modules/waybar.nix
+      #    ./modules/mako.nix
       #    ./modules/gtk
-          ./modules/hyprland/hm.nix
-          ./modules/wofi
+      #    ./modules/hyprland/hm.nix
+      #    ./modules/wofi
         ];
       in
         nixpkgs.lib.nixosSystem {
@@ -60,7 +60,7 @@
             ./modules/bluetooth.nix
             ./modules/fish.nix
             ./modules/fonts.nix
-            ./modules/hyprland
+            ./modules/enable_kde.nix
             ./modules/steam.nix
             inputs.home-manager.nixosModules.home-manager
             

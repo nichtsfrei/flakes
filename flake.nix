@@ -23,6 +23,8 @@
         inherit system;
         config = import ./config.nix;
       };
+     defaultbrewextracasks = ["libreoffice" "docker"];
+     defaultbrewextrapackages = [];
   in {
     #
 
@@ -168,10 +170,11 @@
           email = "philipp.eder@greenbone.net";
         };
         hmextraimports = [
-          ./modules/skhd
+	  ./modules/nvim
+	  ./modules/wezterm
         ];
-        brewextracasks = ["zoom" "docker"];
-        brewextrapackages = ["helm"];
+        brewextracasks = defaultbrewextracasks ++ ["zoom" ];
+        brewextrapackages = ["helm"] ++ defaultbrewextrapackages;
         hostName = "zygomatic";
       in
         inputs.darwin.lib.darwinSystem {
@@ -194,9 +197,11 @@
           email = "philipp.eder@posteo.net";
         };
         hmextraimports = [
+	  ./modules/nvim
+	  ./modules/wezterm
         ];
-        brewextracasks = ["steam" "origin" "vlc" "zoom" "calibre" "element" "libreoffice" ];
-        brewextrapackages = [];
+        brewextracasks = defaultbrewextracasks ++ ["steam" "origin" "vlc" "calibre" "element" ];
+        brewextrapackages = defaultbrewextrapackages;
         hostName = "angstspatz";
       in
         inputs.darwin.lib.darwinSystem {

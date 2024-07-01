@@ -22,7 +22,6 @@
   '';
   system.keyboard.enableKeyMapping = true;
   system.keyboard.remapCapsLockToEscape = false;
-  fonts.fontDir.enable = true;
   services.nix-daemon.enable = true;
   users.users.${user.handle}.home = "/Users/${user.handle}";
 
@@ -88,7 +87,7 @@
       expose-animation-duration = 0.2;
       tilesize = 24;
       launchanim = false;
-      static-only = false;
+      static-only = true;
       showhidden = true;
       show-recents = false;
       show-process-indicators = true;
@@ -256,7 +255,7 @@
       "koekeishiya/formulae"
       "homebrew/cask-fonts"
     ];
-    brews = ["gpg" "skhd" "python" ] ++ brewextrapackages;
-    casks = ["firefox" "utm" "font-monaspace" "alacritty"] ++ brewextracasks;
+    brews = ["gpg" "skhd" "python" "pass" "neovim" "fzf" "ripgrep" ] ++ brewextrapackages;
+    casks = ["rectangle" "firefox" "utm" "font-monaspace" "wezterm"] ++ brewextracasks;
   };
 }

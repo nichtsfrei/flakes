@@ -256,6 +256,6 @@
       "homebrew/cask-fonts"
     ];
     brews = ["gpg" "skhd" "python" "pass" "neovim" "fzf" "ripgrep" ] ++ brewextrapackages;
-    casks = ["rectangle" "firefox" "utm" "font-monaspace" "wezterm"] ++ brewextracasks;
+    casks = ["wacom-tablet" "gimp" "inkscape" "rectangle" "firefox" "utm" "font-monaspace" "wezterm"] ++ brewextracasks;
   };
 }

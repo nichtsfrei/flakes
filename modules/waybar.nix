@@ -1,8 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = (with pkgs; [
-    pamixer
-  ]);
+  home.packages = (with pkgs; [ pamixer ]);
   programs.waybar = {
     enable = true;
     systemd = {
@@ -77,99 +75,105 @@
 
 
     '';
-    settings = [{
-      "layer" = "top";
-      "position" = "bottom";
-      modules-left = [
-        "hyprland/workspaces"
-        "battery"
-        "idle_inhibitor"
-      ];
-      modules-center = [
-        "memory"
-        "clock"
-        "cpu"
-      ];
-      modules-right = [
-        "pulseaudio"
-        "pulseaudio#microphone"
-        "disk"
-        "network"
-        "tray"
-      ];
-      "idle_inhibitor" = {
-        "format" = "{icon}";
-        "format-icons" = {
-          "activated" = "";
-          "deactivated" = "";
+    settings = [
+      {
+        "layer" = "top";
+        "position" = "bottom";
+        modules-left = [
+          "hyprland/workspaces"
+          "battery"
+          "idle_inhibitor"
+        ];
+        modules-center = [
+          "memory"
+          "clock"
+          "cpu"
+        ];
+        modules-right = [
+          "pulseaudio"
+          "pulseaudio#microphone"
+          "disk"
+          "network"
+          "tray"
+        ];
+        "idle_inhibitor" = {
+          "format" = "{icon}";
+          "format-icons" = {
+            "activated" = "";
+            "deactivated" = "";
+          };
         };
-      };
-      "disk" = {
-        "path" = "/home";
-        "format" = "󰋊 {percentage_used}%";
-      };
-      "hyprland/workspaces" = {
-        "format" = "{icon}";
-        "on-click" = "activate";
-      };
-      "pulseaudio" = {
-        "scroll-step" = 5;
-        "format" = "{icon} {volume}%";
-        "format-muted" = "󰸈 Muted";
-        "format-icons" = {
-          "default" = [ "" "" "󱄠" ];
+        "disk" = {
+          "path" = "/home";
+          "format" = "󰋊 {percentage_used}%";
         };
-        "on-click" = "pamixer -t";
-        "on-click-right" = "pavucontrol";
-        "tooltip" = false;
-      };
-      "pulseaudio#microphone" = {
-        "format" = "{format_source}";
-        "format-source" = "󰍬 {volume}%";
-        "format-source-muted" = "󰍭 Muted";
-        "on-click" = "pamixer --default-source -t";
-        "on-scroll-up" = "pamixer --default-source -i 5";
-        "on-scroll-down" = "pamixer --default-source -d 5";
-        "scroll-step" = 5;
-        "on-click-right" = "pavucontrol";
-      };
-      "clock" = {
-        "interval" = 1;
-        "format" = "{:%a %F %R}";
-        "tooltip" = true;
-        "tooltip-format" = "<tt>{calendar}</tt>";
-      };
-      "memory" = {
-        "interval" = 1;
-        "format" = "󰨅 {percentage}%";
-        "states" = {
-          "warning" = 85;
+        "hyprland/workspaces" = {
+          "format" = "{icon}";
+          "on-click" = "activate";
         };
-      };
-      "cpu" = {
-        "interval" = 1;
-        "format" = " {usage}%";
-      };
-      "network" = {
-        "interval" = 1;
-        "format" = "  {ifname}";
-        "format-alt" = "  {bandwidthUpBytes}    {bandwidthDownBytes}";
-        "format-disconnected" = "󰅛 Disconnected";
-        "tooltip" = false;
-      };
-      "temperature" = {
-        "tooltip" = false;
-        "thermal-zone" = 2;
-        "hwmon-path" = "/sys/class/hwmon/hwmon2/temp1_input";
-        "format" = " {temperatureC}°C";
-      };
-      "tray" = {
-        "icon-size" = 12;
-        "spacing" = 8;
-      };
-    }];
+        "pulseaudio" = {
+          "scroll-step" = 5;
+          "format" = "{icon} {volume}%";
+          "format-muted" = "󰸈 Muted";
+          "format-icons" = {
+            "default" = [
+              ""
+              ""
+              "󱄠"
+            ];
+          };
+          "on-click" = "pamixer -t";
+          "on-click-right" = "pavucontrol";
+          "tooltip" = false;
+        };
+        "pulseaudio#microphone" = {
+          "format" = "{format_source}";
+          "format-source" = "󰍬 {volume}%";
+          "format-source-muted" = "󰍭 Muted";
+          "on-click" = "pamixer --default-source -t";
+          "on-scroll-up" = "pamixer --default-source -i 5";
+          "on-scroll-down" = "pamixer --default-source -d 5";
+          "scroll-step" = 5;
+          "on-click-right" = "pavucontrol";
+        };
+        "clock" = {
+          "interval" = 1;
+          "format" = "{:%a %F %R}";
+          "tooltip" = true;
+          "tooltip-format" = "<tt>{calendar}</tt>";
+        };
+        "memory" = {
+          "interval" = 1;
+          "format" = "󰨅 {percentage}%";
+          "states" = {
+            "warning" = 85;
+          };
+        };
+        "cpu" = {
+          "interval" = 1;
+          "format" = " {usage}%";
+        };
+        "network" = {
+          "interval" = 1;
+          "format" = "  {ifname}";
+          "format-alt" = "  {bandwidthUpBytes}    {bandwidthDownBytes}";
+          "format-disconnected" = "󰅛 Disconnected";
+          "tooltip" = false;
+        };
+        "temperature" = {
+          "tooltip" = false;
+          "thermal-zone" = 2;
+          "hwmon-path" = "/sys/class/hwmon/hwmon2/temp1_input";
+          "format" = " {temperatureC}°C";
+        };
+        "tray" = {
+          "icon-size" = 12;
+          "spacing" = 8;
+        };
+      }
+    ];
   };
   programs.waybar.package = pkgs.waybar.overrideAttrs (oa: {
-    mesonFlags = (oa.mesonFlags or  [ ]) ++ [ "-Dexperimental=true" ];
+    mesonFlags = (oa.mesonFlags or [ ]) ++ [ "-Dexperimental=true" ];
   });
 }

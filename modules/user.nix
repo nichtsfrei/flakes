@@ -4,18 +4,20 @@
   user,
   hmextraimports,
   ...
-}: let
+}:
+let
   inherit (user) name;
   username = user.handle;
   inherit (user) email;
-  packages = with pkgs; [
-     gh
-  ];
-in {
+  packages = with pkgs; [ gh ];
+in
+{
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = {
+      inherit inputs;
+    };
     users.${username} = {
       home.username = username;
       home.stateVersion = "22.11";
@@ -23,9 +25,7 @@ in {
       programs.git.enable = true;
       programs.git.userName = name;
       programs.git.userEmail = email;
-      imports = [
-        ]
-        ++ hmextraimports;
+      imports = [ ] ++ hmextraimports;
     };
   };
 
@@ -35,5 +35,5 @@ in {
     #    extraGroups = [ "wheel" "audio" "video" "networkmanager"  ];
     shell = pkgs.fish;
   };
-  nix.settings.allowed-users = ["${username}"];
+  nix.settings.allowed-users = [ "${username}" ];
 }

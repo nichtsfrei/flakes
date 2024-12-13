@@ -4,7 +4,8 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   networking.hostName = "denkspatz"; # Define your hostname.
   hardware.enableRedistributableFirmware = lib.mkDefault true;
   boot.initrd.luks.devices.root = {
@@ -21,14 +22,21 @@
     fsType = "vfat";
   };
 
-  swapDevices = [
-    {device = "/dev/disk/by-uuid/1d31418f-b1e1-48ee-a170-7d521903d6c3";}
-  ];
+  swapDevices = [ { device = "/dev/disk/by-uuid/1d31418f-b1e1-48ee-a170-7d521903d6c3"; } ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = ["i915" "dm-snapshot" "acpi_call"];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = with config.boot.kernelPackages; [acpi_call];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "nvme"
+    "usb_storage"
+    "sd_mod"
+  ];
+  boot.initrd.kernelModules = [
+    "i915"
+    "dm-snapshot"
+    "acpi_call"
+  ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -44,7 +52,7 @@
   services = {
     printing.enable = true;
     # it still works, HL-2130 the only good decision in my 20s.
-    printing.drivers = with pkgs; [brlaser];
+    printing.drivers = with pkgs; [ brlaser ];
     # just in case the printer doesn't outlive me.
     avahi.enable = true;
     avahi.nssmdns = true;

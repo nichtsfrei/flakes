@@ -1,37 +1,84 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
 
 {
-  imports =
-    [ (modulesPath + "/hardware/network/broadcom-43xx.nix")
-      (modulesPath + "/installer/scan/not-detected.nix")
+  imports = [
+    (modulesPath + "/hardware/network/broadcom-43xx.nix")
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
+
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "usbhid"
+    "usb_storage"
+    "sd_mod"
+  ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
+
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/81e71331-1445-4f65-a512-fc6dbfa2f08b";
+    fsType = "btrfs";
+    options = [
+      "subvol=root"
+      "compress=zstd"
     ];
-
-  networking.hostName = "herrspatz";
-  hardware.enableRedistributableFirmware = lib.mkDefault true;
-
-
-  boot.initrd.luks.devices.root = {
-    device = "/dev/disk/by-uuid/d202eb6b-15bc-4275-a2ef-1077e36172a1";
   };
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/e7aaaffd-0880-4d56-9325-b96d93e5187d";
-      fsType = "btrfs";
-    };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/FF86-6E58";
-      fsType = "vfat";
-    };
-
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/dd8bfe85-3ffb-4b57-8d51-2933819ec2a4"; }
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/81e71331-1445-4f65-a512-fc6dbfa2f08b";
+    fsType = "btrfs";
+    options = [
+      "subvol=home"
+      "compress=zstd"
     ];
+  };
+
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/81e71331-1445-4f65-a512-fc6dbfa2f08b";
+    fsType = "btrfs";
+    options = [
+      "subvol=nix"
+      "compress=zstd"
+      "noatime"
+    ];
+  };
+
+  fileSystems."/swap" = {
+    device = "/dev/disk/by-uuid/81e71331-1445-4f65-a512-fc6dbfa2f08b";
+    fsType = "btrfs";
+    options = [
+      "subvol=swap"
+      "noatime"
+    ];
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/12CE-A600";
+    fsType = "vfat";
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
+  };
+
+  swapDevices = [ { device = "/swap/swapfile"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
+  networking.hostName = "herrspatz";
+  hardware.enableRedistributableFirmware = lib.mkDefault true;
+
   # networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

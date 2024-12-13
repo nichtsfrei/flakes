@@ -1,8 +1,5 @@
 { pkgs, ... }:
 {
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "Monaspace" ]; })
-  ];
+  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "Monaspace" ]; }) ];
 
 }
-

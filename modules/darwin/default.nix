@@ -5,15 +5,23 @@
   hostName,
   user,
   ...
-}: {
+}:
+{
   # here go the darwin preferences and config items
   networking.hostName = hostName;
   environment = {
-    shells = with pkgs; [bash fish];
+    shells = with pkgs; [
+      bash
+      fish
+    ];
     loginShell = pkgs.fish;
-    systemPackages = with pkgs; [vim tmux coreutils];
-    systemPath = ["/opt/homebrew/bin"];
-    pathsToLink = ["/Applications"];
+    systemPackages = with pkgs; [
+      vim
+      tmux
+      coreutils
+    ];
+    systemPath = [ "/opt/homebrew/bin" ];
+    pathsToLink = [ "/Applications" ];
   };
 
   # switching screens, spaces for admin users
@@ -115,7 +123,7 @@
       "com.apple.mouse.tapBehavior" = 1; # tap to click
       "com.apple.swipescrolldirection" = true; # "natural" scrolling
 
-      "com.apple.keyboard.fnState" = false; #defaults to multimedia keys when disabled
+      "com.apple.keyboard.fnState" = false; # defaults to multimedia keys when disabled
       "com.apple.springing.enabled" = false;
       "com.apple.trackpad.scaling" = 3.0; # fast
       "com.apple.trackpad.enableSecondaryClick" = true;
@@ -142,11 +150,11 @@
       NSNavPanelExpandedStateForSaveMode2 = true;
       NSDocumentSaveNewDocumentsToCloud = false;
       # speed up animation on open/save boxes (default:0.2)
-      NSWindowResizeTime = 0.001;
+      NSWindowResizeTime = 1.0e-3;
       PMPrintingExpandedStateForPrint = true;
       PMPrintingExpandedStateForPrint2 = true;
     };
-    CustomSystemPreferences = {};
+    CustomSystemPreferences = { };
     CustomUserPreferences = {
       NSGlobalDomain = {
         # Add a context menu item for showing the Web Inspector in web views
@@ -255,7 +263,24 @@
       "koekeishiya/formulae"
       "homebrew/cask-fonts"
     ];
-    brews = ["gpg" "skhd" "python" "pass" "neovim" "fzf" "ripgrep" ] ++ brewextrapackages;
-    casks = ["wacom-tablet" "gimp" "inkscape" "rectangle" "firefox" "utm" "font-monaspace" "wezterm"] ++ brewextracasks;
+    brews = [
+      "gpg"
+      "skhd"
+      "python"
+      "pass"
+      "neovim"
+      "fzf"
+      "ripgrep"
+    ] ++ brewextrapackages;
+    casks = [
+      "wacom-tablet"
+      "gimp"
+      "inkscape"
+      "rectangle"
+      "firefox"
+      "utm"
+      "font-monaspace"
+      "wezterm"
+    ] ++ brewextracasks;
   };
 }

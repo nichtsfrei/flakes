@@ -1,24 +1,20 @@
+{ inputs, pkgs, ... }:
 {
-  inputs,
-  pkgs,
-  ...
-}: {
 
   environment.systemPackages = with pkgs; [
-      fzf
-      xdg-utils
-      # work stuff
-      zoom-us
-      # graphical stuff
-      gimp
-      krita
-      gimp
-      inkscape
-      # browser
-      firefox
-    ];
+    fzf
+    xdg-utils
+    # work stuff
+    zoom-us
+    # graphical stuff
+    gimp
+    krita
+    gimp
+    inkscape
+    # browser
+    firefox
+  ];
 
-  
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # TODO rename to linux defaults?
 
   zramSwap.enable = true;

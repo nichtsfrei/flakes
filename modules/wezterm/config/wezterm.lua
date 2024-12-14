@@ -9,8 +9,8 @@ return {
 	----------------
 	-- Appearance --
 	----------------
-	window_background_opacity = 0.97,
-	color_scheme = "Solarized Dark (Gogh)",
+	-- window_background_opacity = 0.97,
+	color_scheme = "PaperColor Light (base16)",
 
 	inactive_pane_hsb = {
 		saturation = 0.9,

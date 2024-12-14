@@ -4,7 +4,6 @@
   programs.fish = {
     promptInit = ''
       any-nix-shell fish --info-right | source
-      fish_config theme choose "Solarized Dark"
     '';
     shellAliases = {
       nixclean =

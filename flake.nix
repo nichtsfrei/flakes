@@ -7,8 +7,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    darwin.url = "github:lnl7/nix-darwin";
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
@@ -65,6 +63,8 @@
                 ;
             };
             modules = [
+              inputs.nixos-hardware.nixosModules.apple-macbook-pro-11-5
+#              inputs.nixos-hardware.nixosModules.common-gpu-amd-southern-islands
               ./herrspatz.nix
               ./modules/bootloader.nix
               ./modules/misc.nix

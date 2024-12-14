@@ -64,7 +64,8 @@
                 ;
             };
             modules = [
-              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
+              inputs.nixos-hardware.nixosModules.apple-macbook-pro-11-5
+#              inputs.nixos-hardware.nixosModules.common-gpu-amd-southern-islands
               ./denkspatz.nix
               ./modules/bootloader.nix
               ./modules/misc.nix

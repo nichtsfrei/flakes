@@ -45,7 +45,7 @@
             };
             hmextraimports = [
               ./modules/helix
-              ./modules/wezterm
+              ./modules/foot
               ./modules/waybar.nix
               ./modules/mako.nix
               ./modules/hyprland/hm.nix

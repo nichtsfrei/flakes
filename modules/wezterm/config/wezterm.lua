@@ -3,35 +3,35 @@ local act = wezterm.action
 
 return {
 	check_for_updates = false,
-	term = "xterm-256color",
-	use_ime = true,
+	-- term = "xterm-256color",
+	-- use_ime = true,
 
-	----------------
-	-- Appearance --
-	----------------
-	-- window_background_opacity = 0.97,
-	color_scheme = "PaperColor Light (base16)",
+	-- ----------------
+	-- -- Appearance --
+	-- ----------------
+	-- -- window_background_opacity = 0.97,
+	-- color_scheme = "PaperColor Light (base16)",
 
-	inactive_pane_hsb = {
-		saturation = 0.9,
-		brightness = 0.7,
-	},
+	-- inactive_pane_hsb = {
+	-- 	saturation = 0.9,
+	-- 	brightness = 0.7,
+	-- },
 
-	hide_tab_bar_if_only_one_tab = true,
-	tab_bar_at_bottom = true,
+	-- hide_tab_bar_if_only_one_tab = true,
+	-- tab_bar_at_bottom = true,
 
-	-- How many lines of scrollback you want to retain per tab
-	scrollback_lines = 3500,
-	enable_scroll_bar = false,
-	enable_wayland = false;
+	-- -- How many lines of scrollback you want to retain per tab
+	-- scrollback_lines = 3500,
+	-- enable_scroll_bar = false,
+	-- enable_wayland = false;
 
-	-----------
-	-- Fonts --
-	-----------
-	--disable_default_key_bindings = true,
-	line_height = 1,
-	font = wezterm.font("MonaspiceNe Nerd Font"),
-	font_size = 12.0,
+	-- -----------
+	-- -- Fonts --
+	-- -----------
+	-- --disable_default_key_bindings = true,
+	-- line_height = 1,
+	-- font = wezterm.font("MonaspiceNe Nerd Font"),
+	-- font_size = 12.0,
 
 	-----------
 	-- Keys  --

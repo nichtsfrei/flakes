@@ -19,12 +19,7 @@
       nixup = "pushd ~/src/nichtsfrei/flakes; nix flake update; nixswitch; popd";
     };
     shellInit = ''
-      set PATH $PATH ~/.cargo/bin
-      set PATH $PATH ~/.local/bin
       set EDITOR hx
-      function es
-        nix-shell $HOME/src/nichtsfrei/flakes/shells/$argv/shell.nix
-      end
     '';
     enable = true;
   };

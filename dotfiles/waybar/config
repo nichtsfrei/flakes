@@ -1,0 +1,97 @@
+[
+  {
+    "clock": {
+      "format": "{:%a %F %R}",
+      "interval": 1,
+      "tooltip": true,
+      "tooltip-format": "<tt>{calendar}</tt>"
+    },
+    "cpu": {
+      "format": " {usage}%",
+      "interval": 1
+    },
+    "disk": {
+      "format": "󰋊 {percentage_used}%",
+      "path": "/home"
+    },
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "on-click": "activate"
+    },
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      }
+    },
+    "layer": "top",
+    "memory": {
+      "format": "󰨅 {percentage}%",
+      "interval": 1,
+      "states": {
+        "warning": 85
+      }
+    },
+    "modules-center": [
+      "memory",
+      "clock",
+      "cpu"
+    ],
+    "modules-left": [
+      "hyprland/workspaces",
+      "battery",
+      "idle_inhibitor"
+    ],
+    "modules-right": [
+      "pulseaudio",
+      "pulseaudio#microphone",
+      "disk",
+      "network",
+      "tray"
+    ],
+    "network": {
+      "format": "  {ifname}",
+      "format-alt": "  {bandwidthUpBytes}    {bandwidthDownBytes}",
+      "format-disconnected": "󰅛 Disconnected",
+      "interval": 1,
+      "tooltip": false
+    },
+    "position": "bottom",
+    "pulseaudio": {
+      "format": "{icon} {volume}%",
+      "format-icons": {
+        "default": [
+          "",
+          "",
+          "󱄠"
+        ]
+      },
+      "format-muted": "󰸈 Muted",
+      "on-click": "pamixer -t",
+      "on-click-right": "pavucontrol",
+      "scroll-step": 5,
+      "tooltip": false
+    },
+    "pulseaudio#microphone": {
+      "format": "{format_source}",
+      "format-source": "󰍬 {volume}%",
+      "format-source-muted": "󰍭 Muted",
+      "on-click": "pamixer --default-source -t",
+      "on-click-right": "pavucontrol",
+      "on-scroll-down": "pamixer --default-source -d 5",
+      "on-scroll-up": "pamixer --default-source -i 5",
+      "scroll-step": 5
+    },
+    "temperature": {
+      "format": " {temperatureC}°C",
+      "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+      "thermal-zone": 2,
+      "tooltip": false
+    },
+    "tray": {
+      "icon-size": 12,
+      "spacing": 8
+    }
+  }
+]

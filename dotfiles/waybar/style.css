@@ -1,0 +1,66 @@
+* {
+font-family: MonaspiceNE Nerd Font;
+font-weight: bold;
+font-size: 13.5px;
+min-height: 0;
+transition-property: background-color;
+transition-duration: 0.5s;
+}
+window#waybar {
+  background-color: transparent;
+}
+window > box {
+  border: 2px solid #206686;
+  border-radius: 1px;
+  background-color: rgba(1, 1, 1, 0.9);
+}
+#workspaces {
+  padding-left: 0px;
+  padding-right: 4px;
+  border-radius: 0px;
+}
+#workspaces button {
+  padding-top: 5px;
+  border-radius: 0px;
+  padding-bottom: 5px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+#workspaces button.active {
+  background-color: #206686;
+  color: rgb(26, 24, 38);
+}
+#workspaces button.urgent {
+  color: rgb(26, 24, 38);
+}
+tooltip {
+  background: rgb(48, 45, 65);
+}
+tooltip label {
+  color: rgb(217, 224, 238);
+}
+#clock,
+#memory,
+#temperature,
+#cpu,
+#mpd,
+#temperature,
+#backlight,
+#pulseaudio,
+#network,
+#battery,
+#disk,
+#idle_inhibitor
+{
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  color: rgb(181, 232, 224);
+}
+#tray {
+  padding-right: 8px;
+  padding-left: 13px;
+}
+
+

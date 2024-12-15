@@ -2,7 +2,6 @@
 {
 
   environment.systemPackages = with pkgs; [
-    fzf
     xdg-utils
     # work stuff
     zoom-us

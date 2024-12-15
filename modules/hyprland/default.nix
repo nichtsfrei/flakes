@@ -2,7 +2,7 @@
 {
 
   environment.systemPackages = with pkgs; [
-    fzf
+    foot
     xdg-utils
     pavucontrol
     brightnessctl
@@ -13,6 +13,10 @@
     hyprlock
     hypridle
     hyprpaper
+
+    wofi
+    waybar
+    pamixer
 
     firefox
   ];
@@ -28,5 +32,10 @@
   programs.fish.loginShellInit = ''
     set TTY1 (tty)
     [ "$TTY1" = "/dev/tty1" ] && exec Hyprland
+  '';
+
+  system.activationScripts.hyprcursors = ''
+    mkdir -p /usr/share/icons
+    cp -r ${./icons}/* /usr/share/icons/
   '';
 }

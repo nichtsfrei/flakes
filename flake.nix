@@ -20,6 +20,28 @@
           config = import ./config.nix;
         };
       pkgs = mkPkgs "x86_64-linux";
+      core = [
+        ./modules/bootloader.nix
+        ./modules/misc.nix
+      ];
+      terminal = core ++ [
+        ./modules/fonts.nix
+        ./modules/terminal.nix
+        ./modules/fish.nix
+      ];
+      laptop = terminal ++ [
+        ./modules/sound.nix
+        ./modules/bluetooth.nix
+        ./modules/linuxuser.nix
+      ];
+      hyprland = laptop ++ [
+        ./modules/hyprland
+      ];
+      default_user = {
+        handle = "philipp";
+        name = "Philipp Eder";
+        email = "philipp.eder@posteo.net";
+      };
     in
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
@@ -35,22 +57,9 @@
       };
       nixosConfigurations = {
 
-
         denkspatz =
           let
-            user = {
-              handle = "philipp";
-              name = "Philipp Eder";
-              email = "philipp.eder@posteo.net";
-            };
-            hmextraimports = [
-              ./modules/helix
-              ./modules/foot
-              ./modules/waybar.nix
-              ./modules/mako.nix
-              ./modules/hyprland/hm.nix
-              ./modules/wofi
-            ];
+            user = default_user;
           in
           nixpkgs.lib.nixosSystem {
             pkgs = mkPkgs "x86_64-linux";
@@ -60,40 +69,17 @@
                 self
                 inputs
                 user
-                hmextraimports
                 ;
             };
             modules = [
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
               ./denkspatz.nix
-              ./modules/bootloader.nix
-              ./modules/misc.nix
-              ./modules/sound.nix
-              ./modules/bluetooth.nix
-              ./modules/fish.nix
-              ./modules/fonts.nix
-              ./modules/hyprland
-              inputs.home-manager.nixosModules.home-manager
-              ./modules/user.nix
-              ./modules/linuxuser.nix
-            ];
+            ] ++ hyprland;
           };
 
         herrspatz =
           let
-            user = {
-              handle = "philipp";
-              name = "Philipp Eder";
-              email = "philipp.eder@posteo.net";
-            };
-            hmextraimports = [
-              ./modules/helix
-              ./modules/wezterm
-              ./modules/waybar.nix
-              ./modules/mako.nix
-              ./modules/hyprland/hm.nix
-              ./modules/wofi
-            ];
+            user = default_user;
           in
           nixpkgs.lib.nixosSystem {
             pkgs = mkPkgs "x86_64-linux";
@@ -103,24 +89,13 @@
                 self
                 inputs
                 user
-                hmextraimports
                 ;
             };
             modules = [
               inputs.nixos-hardware.nixosModules.apple-macbook-pro-11-5
-#              inputs.nixos-hardware.nixosModules.common-gpu-amd-southern-islands
+              #              inputs.nixos-hardware.nixosModules.common-gpu-amd-southern-islands
               ./herrspatz.nix
-              ./modules/bootloader.nix
-              ./modules/misc.nix
-              ./modules/sound.nix
-              ./modules/bluetooth.nix
-              ./modules/fish.nix
-              ./modules/fonts.nix
-              ./modules/hyprland
-              inputs.home-manager.nixosModules.home-manager
-              ./modules/user.nix
-              ./modules/linuxuser.nix
-            ];
+            ] ++ hyprland;
           };
       };
     };

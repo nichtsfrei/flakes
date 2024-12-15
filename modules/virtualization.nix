@@ -86,7 +86,7 @@
     docker.enable = true;
   };
 
-  # exclude to k3s.nix  
+  # exclude to k3s.nix
   networking.firewall.allowedUDPPorts = [
     # 8472 # k3s, flannel: required if using multi-node for inter-node networking
   ];

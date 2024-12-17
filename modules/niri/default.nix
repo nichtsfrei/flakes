@@ -11,7 +11,7 @@
     wl-clipboard
     wf-recorder
     xdg-desktop-portal-gnome
-    niri
+    # niri
     fuzzel
     swayidle
     swaylock
@@ -20,7 +20,9 @@
     firefox
   ];
   services.gnome.gnome-keyring.enable = true;
+  services.gnome.core-utilities.enable = false;
   security.pam.services.swaylock = { };
+  programs.niri.enable = true;
 
   programs.fish.loginShellInit = ''
     set TTY1 (tty)
@@ -30,6 +32,8 @@
   
   services.xserver = {
     enable = false;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
     xkb = {
       layout = "us";
       variant = "";

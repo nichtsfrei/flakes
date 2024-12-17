@@ -34,6 +34,14 @@
       hyprland = laptop ++ [
         ./modules/hyprland
       ];
+
+      sway = laptop ++ [
+        ./modules/sway
+      ];
+
+      niri = laptop ++ [
+        ./modules/niri
+      ];
       default_user = {
         handle = "philipp";
         name = "Philipp Eder";
@@ -71,7 +79,7 @@
             modules = [
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
               ./denkspatz.nix
-            ] ++ hyprland;
+            ] ++ niri;
           };
 
         herrspatz =

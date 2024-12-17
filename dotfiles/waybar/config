@@ -14,7 +14,7 @@
       "format": "󰋊 {percentage_used}%",
       "path": "/home"
     },
-    "hyprland/workspaces": {
+    "niri/workspaces": {
       "format": "{icon}",
       "on-click": "activate"
     },
@@ -39,7 +39,7 @@
       "cpu"
     ],
     "modules-left": [
-      "hyprland/workspaces",
+      "niri/workspaces",
       "battery",
       "idle_inhibitor"
     ],
@@ -83,11 +83,14 @@
       "on-scroll-up": "pamixer --default-source -i 5",
       "scroll-step": 5
     },
-    "temperature": {
-      "format": " {temperatureC}°C",
-      "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-      "thermal-zone": 2,
-      "tooltip": false
+    "battery": {
+    	"states": {
+    		"warning": 30,
+    		"critical": 15
+    	},
+    	"format": "{capacity}% {icon}",
+    	"format-icons": ["", "", "", "", ""],
+    	"max-length": 25
     },
     "tray": {
       "icon-size": 12,

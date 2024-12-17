@@ -10,7 +10,7 @@
         if pkgs.stdenv.hostPlatform.isDarwin then
           "sudo nix-env --delete-generations +7 --profile /nix/var/nix/profiles/system; sudo nix-collect-garbage --delete-older-than 5d; nix store optimise"
         else
-          "sudo nix-env --delete-generations +7 --profile /nix/var/nix/profiles/system; sudo nix-collect-garbage --delete-older-than 5d; nix store optimise; sudo nixos-rebuild boot";
+          "sudo nix-env --delete-generations +7 --profile /nix/var/nix/profiles/system; sudo nix-collect-garbage --delete-older-than 5d; nix store optimise; sudo nixos-rebuild switch --flake ~/src/nichtsfrei/flakes/.#";
       nixswitch =
         if pkgs.stdenv.hostPlatform.isDarwin then
           "darwin-rebuild switch --impure --flake ~/src/nichtsfrei/flakes/.#"

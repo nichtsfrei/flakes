@@ -24,10 +24,10 @@
   security.pam.services.swaylock = { };
   programs.niri.enable = true;
 
-  programs.fish.loginShellInit = ''
-    set TTY1 (tty)
-    [ "$TTY1" = "/dev/tty1" ] && exec niri
-  '';
+  # programs.fish.loginShellInit = ''
+  #   set TTY1 (tty)
+  #   [ "$TTY1" = "/dev/tty1" ] && exec niri
+  # '';
 
   
   services.xserver = {

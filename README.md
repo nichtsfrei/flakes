@@ -62,4 +62,6 @@ nix build --extra-experimental-features "nix-command flakes" .#darwinConfigurati
 There will be an error in the first run, just execute the proposed commands.
 
 On the error messages that already exist: delete the files so that nix can manage them.
-
+```
+sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 --wipe-slot=tpm2 /dev/nvme0n1p2
+```

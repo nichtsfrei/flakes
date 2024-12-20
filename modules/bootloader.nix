@@ -5,6 +5,7 @@
   zramSwap.enable = true;
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   boot = {
+    # bootspec.enabled = true;
     tmp.cleanOnBoot = true;
     kernelPackages = pkgs.linuxPackages_latest;
     plymouth = {

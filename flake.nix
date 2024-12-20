@@ -4,6 +4,10 @@
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -47,6 +51,9 @@
         name = "Philipp Eder";
         email = "philipp.eder@posteo.net";
       };
+      lanzaboote = [
+        ./modules/lanzaboote.nix
+      ];
     in
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
@@ -78,8 +85,9 @@
             };
             modules = [
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
+              inputs.lanzaboote.nixosModules.lanzaboote
               ./denkspatz.nix
-            ] ++ niri;
+            ] ++ niri ++ lanzaboote;
           };
 
         herrspatz =

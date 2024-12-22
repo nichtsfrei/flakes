@@ -18,7 +18,10 @@
     waybar
     pamixer
     firefox
+    squeekboard
+    playerctl
   ];
+
   services.gnome.gnome-keyring.enable = true;
   services.gnome.core-utilities.enable = false;
   security.pam.services.swaylock = { };

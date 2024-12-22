@@ -14,6 +14,42 @@
       "format": "󰋊 {percentage_used}%",
       "path": "/home"
     },
+    "custom/niri-left": {
+       "format": "\uea9b",
+      "on-click": "niri msg action focus-column-left"
+    },
+    "custom/niri-right": {
+       "format": "\uea9c",
+      "on-click": "niri msg action focus-column-right"
+    },
+    "custom/niri-rotate": {
+      "format": "\uf0886",
+      "on-click": "sh $HOME/.config/scripts/niri-transform.sh"
+    },
+    "custom/niri-maximixe": {
+      "format": "\uf0293",
+      "on-click": "niri msg action maximize-column"
+    },
+    "custom/osk-toggle": {
+      "format": "\uf030c",
+      "on-click": "sh $HOME/.config/scripts/toggle-osk.sh"
+    },
+    "custom/youtube": {
+      "format": "\uf16a",
+      "on-click": "firefox --new-window https://www.youtube.com"
+    },
+    "custom/music": {
+      "format": "\uf001",
+      "on-click": "firefox --new-window https://music.apple.com/de"
+    },
+    "custom/tv": {
+      "format": "\uf26c",
+      "on-click": "firefox --new-window https://tv.apple.com/de"
+    },
+    "custom/terminal": {
+      "format": "\uf120",
+      "on-click": "foot"
+    },
     "niri/workspaces": {
       "format": "{icon}",
       "on-click": "activate"
@@ -34,21 +70,30 @@
       }
     },
     "modules-center": [
+      "custom/niri-rotate",
       "memory",
       "clock",
-      "cpu"
+      "cpu",
+      "custom/osk-toggle",
+      "custom/niri-maximixe",
     ],
     "modules-left": [
+      "custom/niri-left",
       "niri/workspaces",
       "battery",
-      "idle_inhibitor"
+      "idle_inhibitor",
+      "custom/youtube",
+      "custom/tv",
+      "custom/music",
     ],
     "modules-right": [
+      "custom/terminal",
       "pulseaudio",
       "pulseaudio#microphone",
       "disk",
       "network",
-      "tray"
+      "tray",
+      "custom/niri-right",
     ],
     "network": {
       "format": "  {ifname}",

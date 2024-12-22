@@ -7,6 +7,7 @@
     helix
     vim
     fzf
+    jq
     ripgrep
     file
     fd

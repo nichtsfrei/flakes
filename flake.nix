@@ -3,7 +3,10 @@
   inputs = {
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware = {
+      # url =  "github:NixOS/nixos-hardware/master";
+      url =  "github:nichtsfrei/nixos-hardware/master";
+    };
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -69,6 +72,25 @@
       };
       nixosConfigurations = {
 
+        spatzenschirm =
+          let
+            user = default_user;
+          in
+          nixpkgs.lib.nixosSystem {
+            pkgs = mkPkgs "x86_64-linux";
+
+            specialArgs = {
+              inherit
+                self
+                inputs
+                user
+                ;
+            };
+            modules = [
+              inputs.nixos-hardware.nixosModules.minisforum-v3
+              ./spatzenschirm.nix
+            ] ++ niri;
+          };
         denkspatz =
           let
             user = default_user;

@@ -74,7 +74,7 @@ input {
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1080@120.030"
+    // mode "1920x1080@120.030"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 1
@@ -92,7 +92,7 @@ input {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    position x=1280 y=0
+    // 1position x=1280 y=0
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -209,6 +209,7 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 spawn-at-startup "waybar"
+spawn-at-startup "squeekboard"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.

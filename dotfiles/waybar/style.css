@@ -39,6 +39,15 @@ tooltip {
 tooltip label {
   color: rgb(217, 224, 238);
 }
+#custom-niri-left,
+#custom-niri-right,
+#custom-niri-rotate,
+#custom-osk-toggle,
+#custom-youtube,
+#custom-tv,
+#custom-music,
+#custom-terminal,
+#custom-niri-maximize,
 #clock,
 #memory,
 #temperature,
@@ -62,5 +71,3 @@ tooltip label {
   padding-right: 8px;
   padding-left: 13px;
 }
-
-

@@ -34,17 +34,10 @@
       "format": "",
       "on-click": "sh $HOME/.config/scripts/toggle-osk.sh"
     },
-    "custom/youtube": {
-      "format": "\uf16a",
-      "on-click": "firefox --new-window https://www.youtube.com"
-    },
-    "custom/music": {
-      "format": "\uf001",
-      "on-click": "firefox --new-window https://music.apple.com/de"
-    },
-    "custom/tv": {
-      "format": "\uf26c",
-      "on-click": "firefox --new-window https://tv.apple.com/de"
+    
+    "custom/multimedia-menu": {
+      "format": "",
+      "on-click": "sh $HOME/.config/waybar/subbars/spawn-wb.sh multimedia"
     },
     "custom/terminal": {
       "format": "\uf120",
@@ -53,6 +46,10 @@
     "custom/brightness-menu": {
       "format": "󰃟",
       "on-click": "sh $HOME/.config/waybar/subbars/spawn-wb.sh display-brightness"
+    },
+    "custom/power-menu": {
+      "format": "󰐥",
+      "on-click": "sh $HOME/.config/waybar/subbars/spawn-wb.sh power"
     },
     "custom/bluetooth-connect-menu": {
       "format": "󰂱",
@@ -90,12 +87,11 @@
       "niri/workspaces",
       "battery",
       "idle_inhibitor",
-      "custom/youtube",
-      "custom/tv",
-      "custom/music",
+      "custom/multimedia-menu",
       "custom/bluetooth-connect-menu",
     ],
     "modules-right": [
+      "custom/power-menu",
       "custom/brightness-menu",
       "custom/terminal",
       "pulseaudio",
@@ -123,8 +119,7 @@
         ]
       },
       "format-muted": "󰸈 Muted",
-      "on-click": "pamixer -t",
-      "on-click-right": "pavucontrol",
+      "on-click": "pavucontrol",
       "scroll-step": 5,
       "tooltip": false
     },
@@ -132,8 +127,7 @@
       "format": "{format_source}",
       "format-source": "󰍬 {volume}%",
       "format-source-muted": "󰍭 Muted",
-      "on-click": "pamixer --default-source -t",
-      "on-click-right": "pavucontrol",
+      "on-click": "pavucontrol",
       "on-scroll-down": "pamixer --default-source -d 5",
       "on-scroll-up": "pamixer --default-source -i 5",
       "scroll-step": 5

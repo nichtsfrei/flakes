@@ -11,7 +11,6 @@
     wl-clipboard
     wf-recorder
     xdg-desktop-portal-gnome
-    # niri
     fuzzel
     swayidle
     swaylock
@@ -20,12 +19,16 @@
     firefox
     squeekboard
     playerctl
+    xwayland-satellite
   ];
 
+  services.udisks2.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.gnome.core-utilities.enable = false;
   security.pam.services.swaylock = { };
-  programs.niri.enable = true;
+  programs.niri = {
+    enable = true;
+  };
 
   # programs.fish.loginShellInit = ''
   #   set TTY1 (tty)

@@ -89,6 +89,7 @@
             modules = [
               inputs.nixos-hardware.nixosModules.minisforum-v3
               ./spatzenschirm.nix
+              ./modules/steam.nix
             ] ++ niri;
           };
         denkspatz =

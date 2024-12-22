@@ -23,15 +23,15 @@
       "on-click": "niri msg action focus-column-right"
     },
     "custom/niri-rotate": {
-      "format": "\uf0886",
+      "format": "󰢆",
       "on-click": "sh $HOME/.config/scripts/niri-transform.sh"
     },
     "custom/niri-maximixe": {
-      "format": "\uf0293",
+      "format": "",
       "on-click": "niri msg action maximize-column"
     },
     "custom/osk-toggle": {
-      "format": "\uf030c",
+      "format": "",
       "on-click": "sh $HOME/.config/scripts/toggle-osk.sh"
     },
     "custom/youtube": {
@@ -49,6 +49,14 @@
     "custom/terminal": {
       "format": "\uf120",
       "on-click": "foot"
+    },
+    "custom/brightness-menu": {
+      "format": "󰃟",
+      "on-click": "sh $HOME/.config/waybar/subbars/spawn-wb.sh display-brightness"
+    },
+    "custom/bluetooth-connect-menu": {
+      "format": "󰂱",
+      "on-click": "sh $HOME/.config/waybar/subbars/spawn-wb.sh bluetooth-connect"
     },
     "niri/workspaces": {
       "format": "{icon}",
@@ -85,8 +93,10 @@
       "custom/youtube",
       "custom/tv",
       "custom/music",
+      "custom/bluetooth-connect-menu",
     ],
     "modules-right": [
+      "custom/brightness-menu",
       "custom/terminal",
       "pulseaudio",
       "pulseaudio#microphone",

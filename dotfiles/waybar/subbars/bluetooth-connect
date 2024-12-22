@@ -1,0 +1,13 @@
+[
+  {
+    "position": "bottom",
+    "layer": "top",
+    "custom/podsparrow": {
+      "format": " podsparrow",
+      "on-click": "sh $HOME/.config/waybar/subbars/toogle-bluetooth-connect.sh 90:9C:4A:DD:36:80"
+    },
+    "modules-center": [
+      "custom/podsparrow",
+    ],
+  }
+]

@@ -20,6 +20,8 @@
     squeekboard
     playerctl
     xwayland-satellite
+    signal-desktop
+    element-desktop
   ];
 
   services.udisks2.enable = true;
@@ -34,7 +36,6 @@
   #   set TTY1 (tty)
   #   [ "$TTY1" = "/dev/tty1" ] && exec niri
   # '';
-
   
   services.xserver = {
     enable = false;
@@ -45,6 +46,4 @@
       variant = "";
     };
   };
-
-
 }

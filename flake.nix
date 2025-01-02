@@ -1,7 +1,6 @@
 {
   description = "nichtsfrei's nixos configuration";
   inputs = {
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware = {
       # url =  "github:NixOS/nixos-hardware/master";
@@ -37,6 +36,7 @@
         ./modules/bluetooth.nix
         ./modules/linuxuser.nix
         ./modules/yubikey.nix
+        ./modules/tlp.nix
       ];
       hyprland = laptop ++ [
         ./modules/hyprland

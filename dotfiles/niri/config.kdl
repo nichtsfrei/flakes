@@ -210,6 +210,12 @@ layout {
 // See the binds section below for more spawn examples.
 spawn-at-startup "waybar"
 spawn-at-startup "squeekboard"
+// Unfortunately this is still needed for some applications
+spawn-at-startup "xwayland-satellite"
+environment {
+    DISPLAY ":0"
+}
+
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -495,4 +501,18 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+}
+
+workspace "root"
+workspace "chat"
+workspace "game"
+
+window-rule {
+    match app-id=r#"^Signal$"#
+    match app-id=r#"^Element$"#
+    open-on-workspace "chat"
+}
+window-rule {
+    match app-id=r#"^steam$"#
+    open-on-workspace "game"
 }

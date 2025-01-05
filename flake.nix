@@ -1,7 +1,7 @@
 {
   description = "nichtsfrei's nixos configuration";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixos-hardware = {
       # url =  "github:NixOS/nixos-hardware/master";
       url =  "github:nichtsfrei/nixos-hardware/master";
@@ -16,12 +16,12 @@
     { nixpkgs, self, ... }@inputs:
     let
       mkPkgs =
-        system:
-        import nixpkgs {
+        system: pkg:
+        import pkg {
           inherit system;
           config = import ./config.nix;
         };
-      pkgs = mkPkgs "x86_64-linux";
+      pkgs = mkPkgs "x86_64-linux" nixpkgs;
       core = [
         ./modules/bootloader.nix
         ./modules/misc.nix
@@ -77,7 +77,8 @@
             user = default_user;
           in
           nixpkgs.lib.nixosSystem {
-            pkgs = mkPkgs "x86_64-linux";
+
+            pkgs = mkPkgs "x86_64-linux" nixpkgs;
 
             specialArgs = {
               inherit
@@ -97,7 +98,7 @@
             user = default_user;
           in
           nixpkgs.lib.nixosSystem {
-            pkgs = mkPkgs "x86_64-linux";
+            pkgs = mkPkgs "x86_64-linux" nixpkgs;
 
             specialArgs = {
               inherit
@@ -118,7 +119,7 @@
             user = default_user;
           in
           nixpkgs.lib.nixosSystem {
-            pkgs = mkPkgs "x86_64-linux";
+            pkgs = mkPkgs "x86_64-linux" nixpkgs;
 
             specialArgs = {
               inherit

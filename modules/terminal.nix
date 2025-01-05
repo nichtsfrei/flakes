@@ -4,7 +4,6 @@
   environment.systemPackages = with pkgs; [
     curl
     git
-    helix
     vim
     fzf
     jq
@@ -16,6 +15,7 @@
     distrobox
     appimage-run
     tmux
+    helix
   ];
 
   hardware.gpgSmartcards.enable = true;

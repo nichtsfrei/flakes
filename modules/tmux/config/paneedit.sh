@@ -1,8 +1,0 @@
-#!/bin/sh
-
-width=${2:-80%}
-height=${2:-80%}
-FILENAME=$(mktemp /tmp/paneedit.XXXXXX)
-tmux capture-pane -pS - > "$FILENAME"
-EDITOR=${EDITOR:-hx}
-tmux popup -xC -yC -w"$width" -h"$height" -E "$EDITOR" "$FILENAME"

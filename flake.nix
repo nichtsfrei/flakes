@@ -38,14 +38,9 @@
         ./modules/yubikey.nix
         ./modules/tlp.nix
       ];
-      hyprland = laptop ++ [
-        ./modules/hyprland
-      ];
-
       sway = laptop ++ [
         ./modules/sway
       ];
-
       niri = laptop ++ [
         ./modules/niri
       ];
@@ -132,7 +127,7 @@
               inputs.nixos-hardware.nixosModules.apple-macbook-pro-11-5
               #              inputs.nixos-hardware.nixosModules.common-gpu-amd-southern-islands
               ./herrspatz.nix
-            ] ++ hyprland;
+            ] ++ niri;
           };
       };
     };

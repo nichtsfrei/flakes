@@ -21,6 +21,7 @@ in
       "docker"
       "libvirtd"
       "qemu-libvirtd"
+      "plugdev"
     ];
   };
   system.activationScripts.createGitconfig = ''
@@ -28,7 +29,6 @@ in
     [user]
       name = ${name}
       email = ${email}
-
     [core]
       editor = hx
     EOF

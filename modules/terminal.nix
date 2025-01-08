@@ -16,7 +16,11 @@
     appimage-run
     tmux
     helix
+    man-pages
+    man-pages-posix
   ];
+  documentation.dev.enable = true;
+  documentation.man.generateCaches = true;
 
   hardware.gpgSmartcards.enable = true;
 }

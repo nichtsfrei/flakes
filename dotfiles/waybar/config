@@ -60,6 +60,11 @@
       "format": "󰂱",
       "on-click": "sh $HOME/.config/waybar/subbars/spawn-wb.sh bluetooth-connect"
     },
+    "custom/lkb": {
+      "exec": "lkb",
+      "interval": 1,
+      "format": "{}"
+    },
     "niri/workspaces": {
       "format": "{icon}",
       "on-click": "activate"
@@ -84,6 +89,7 @@
       "memory",
       "clock",
       "cpu",
+      "custom/lkb",
       "custom/osk-toggle",
       "custom/niri-maximixe",
     ],

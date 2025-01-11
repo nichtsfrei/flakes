@@ -34,16 +34,15 @@
   };
 
   systemd.user.services.lkbd = {
-  enable = true;
-  after = [ "network.target" ];
-  wantedBy = [ "default.target" ];
-  path = [ inputs.lkb.packages."${pkgs.system}".lkb ];
-  description = "lkbd";
-  serviceConfig = {
-      Type = "simple";
-      ExecStart = path;
-      Restart = "always";
-  };
+    enable = true;
+    after = [ "network.target" ];
+    wantedBy = [ "default.target" ];
+    description = "lkbd";
+    serviceConfig = {
+        Type = "simple";
+        ExecStart = "${inputs.lkb.packages."${pkgs.system}".lkb}/bin/lkbd";
+        Restart = "always";
+    };
 };
 
   # programs.fish.loginShellInit = ''

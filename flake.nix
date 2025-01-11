@@ -1,6 +1,7 @@
 {
   description = "nichtsfrei's nixos configuration";
   inputs = {
+    lkb.url = "path:./lkb";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixos-hardware = {
       # url =  "github:NixOS/nixos-hardware/master";
@@ -67,7 +68,6 @@
           nixpkgs.lib.nixosSystem {
 
             pkgs = mkPkgs "x86_64-linux" nixpkgs;
-
             specialArgs = {
               inherit
                 self

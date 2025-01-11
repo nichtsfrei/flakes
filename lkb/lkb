@@ -1,0 +1,23 @@
+#!/bin/sh
+
+
+SOCKET_PATH="$XDG_RUNTIME_DIR/lkbd.sock"
+
+printf "L" | nc -U "$SOCKET_PATH" | awk '
+$1 == "device" && $2 == "layer" { next }
+
+# Process each line and build a single output string
+{
+    if (match($1, /[0-9]+/)) {
+        result = result "kb" substr($1, RSTART, RLENGTH) ": " $2 "|"
+    } else {
+        print "Error: Could not extract numeric part from device: " $1 > "/dev/stderr"
+    }
+}
+
+END {
+    sub(/\|$/, "", result)  # Remove the last trailing |
+    print result
+}'
+
+

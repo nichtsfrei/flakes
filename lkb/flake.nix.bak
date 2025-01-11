@@ -1,0 +1,38 @@
+{
+  description = "utilities to communicate with nichtsfrei/qmk-firmware keyboards";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
+
+  outputs = { self, nixpkgs, flake-utils, ... }:
+    flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+        # pkgs = import nixpkgs {
+        #   inherit system;
+        # };
+      in {
+        packages.default = pkgs.stdenv.mkDerivation rec {
+          pname = "lkbd";
+          version = "1.0";
+
+          src = ./.;
+
+          buildInputs = [ pkgs.gcc ];
+
+          buildPhase = ''
+            gcc -O3 -o lkbd daemon.c
+          '';
+
+          installPhase = ''
+            mkdir -p $out/bin
+            mv lkbd $out/bin/lkbd
+          '';
+        };
+      }
+    );
+    
+}
+

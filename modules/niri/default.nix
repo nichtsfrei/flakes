@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
 
   environment.systemPackages = with pkgs; [
@@ -22,6 +22,7 @@
     xwayland-satellite
     signal-desktop
     element-desktop
+    inputs.lkb.packages."${pkgs.system}".lkb
   ];
 
   services.udisks2.enable = true;
@@ -31,6 +32,19 @@
   programs.niri = {
     enable = true;
   };
+
+  systemd.user.services.lkbd = {
+  enable = true;
+  after = [ "network.target" ];
+  wantedBy = [ "default.target" ];
+  path = [ inputs.lkb.packages."${pkgs.system}".lkb ];
+  description = "lkbd";
+  serviceConfig = {
+      Type = "simple";
+      ExecStart = path;
+      Restart = "always";
+  };
+};
 
   # programs.fish.loginShellInit = ''
   #   set TTY1 (tty)

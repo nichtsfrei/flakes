@@ -41,6 +41,7 @@
   services.fwupd.enable = true;
 
   hardware.keyboard.qmk.enable = true;
+  
   virtualisation = {
     podman = {
       enable = true;

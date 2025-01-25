@@ -14,8 +14,13 @@
       "format": "󰋊 {percentage_used}%",
       "path": "/home"
     },
+    "custom/battery": {
+      "format": "{}",
+      "exec": "sh $HOME/.config/waybar/bat.sh",
+      "interval": 5
+    },
     "custom/niri-left": {
-       "format": "\uea9b",
+      "format": "\uea9b",
       "on-click": "niri msg action focus-column-left"
     },
     "custom/niri-right": {
@@ -85,7 +90,7 @@
     "modules-left": [
       "custom/niri-left",
       "niri/workspaces",
-      "battery",
+      "custom/battery",
       "idle_inhibitor",
       "custom/multimedia-menu",
       "custom/bluetooth-connect-menu",
@@ -131,15 +136,6 @@
       "on-scroll-down": "pamixer --default-source -d 5",
       "on-scroll-up": "pamixer --default-source -i 5",
       "scroll-step": 5
-    },
-    "battery": {
-    	"states": {
-    		"warning": 30,
-    		"critical": 15
-    	},
-    	"format": "{capacity}% {icon}",
-    	"format-icons": ["", "", "", "", ""],
-    	"max-length": 25
     },
     "tray": {
       "icon-size": 12,

@@ -1,6 +1,4 @@
 #!/bin/sh
-# Checks each dir of  cat /sys/class/power_supply/BAT0..BAT255/
-# - energy_now / energy_full
 for battery_dir in /sys/class/power_supply/BAT*/; do
   if [ -f "$battery_dir/energy_now" ] && [ -f "$battery_dir/energy_full" ]; then
     energy_now=$(cat "$battery_dir/energy_now")

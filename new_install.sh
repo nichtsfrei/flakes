@@ -40,5 +40,8 @@ mount ${PART}1 /mnt/boot
 btrfs filesystem mkswapfile --size $SWAP_SIZE --uuid clear /mnt/swap/swapfile
 nixos-generate-config --root /mnt
 cp /mnt/etc/nixos/hardware-configuration.nix new-system.nix
+# So that it is easier to copy around
+blkid > blkid.txt
 
+# TODO: write a script to prefill luks stuff
 printf "Do the stuff in fs_skeleton, junge."

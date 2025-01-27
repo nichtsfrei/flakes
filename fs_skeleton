@@ -25,6 +25,7 @@ services.btrfs.autoScrub = {
   # LUKS device to open before mounting / [root]
   boot.initrd.luks.devices = {
     luksroot = {
+      # blkid UUID of second partition
       device = "/dev/disk/by-uuid/<root_partition>";
       allowDiscards = true;
       preLVM = true;

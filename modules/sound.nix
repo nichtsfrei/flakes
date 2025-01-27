@@ -3,7 +3,6 @@ _:
 {
 
   security.rtkit.enable = true;
-  services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -11,6 +10,13 @@ _:
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     jack.enable = false;
+
+    wireplumber.extraConfig.bluetoothEnhancements = {
+    "monitor.bluez.properties" = {
+        "bluez5.enable-sbc-xq" = true;
+    };
   };
+};
+
 
 }

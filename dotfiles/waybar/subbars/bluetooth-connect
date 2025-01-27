@@ -6,12 +6,13 @@
       "format": " podsparrow",
       "on-click": "sh $HOME/.config/waybar/subbars/toogle-bluetooth-connect.sh 90:9C:4A:DD:36:80"
     },
-    "custom/podsparrow": {
+    "custom/sony": {
       "format": " sony s",
       "on-click": "sh $HOME/.config/waybar/subbars/toogle-bluetooth-connect.sh AC:80:0A:A8:CE:7C"
     },
     "modules-center": [
       "custom/podsparrow",
+      "custom/sony",
     ],
   }
 ]

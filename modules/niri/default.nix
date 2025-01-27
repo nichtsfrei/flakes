@@ -28,6 +28,8 @@
   services.udisks2.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.gnome.core-utilities.enable = false;
+  services.gnome.gnome-remote-desktop.enable = false;
+
   security.pam.services.swaylock = { };
   programs.niri = {
     enable = true;

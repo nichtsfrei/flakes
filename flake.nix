@@ -62,6 +62,25 @@
       };
       nixosConfigurations = {
 
+        spatzenbad =
+          let
+            user = default_user;
+          in
+          nixpkgs.lib.nixosSystem {
+
+            pkgs = mkPkgs "x86_64-linux" nixpkgs;
+            specialArgs = {
+              inherit
+                self
+                inputs
+                user
+                ;
+            };
+            modules = [
+              ./spatzenbad.nix
+              ./modules/steam.nix
+            ] ++ niri;
+          };
         spatzenschirm =
           let
             user = default_user;

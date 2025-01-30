@@ -4,6 +4,7 @@
     # TODO: this does not work on new installs, maybe better to move out
     lkb.url = "path:./lkb";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    jovian-nixos.url = "github:Jovian-Experiments/Jovian-NixOS";
     nixos-hardware = {
       # url =  "github:NixOS/nixos-hardware/master";
       url =  "github:nichtsfrei/nixos-hardware/master";
@@ -11,7 +12,7 @@
   };
 
   outputs =
-    { nixpkgs, self, ... }@inputs:
+    { jovian-nixos, nixpkgs, self, ... }@inputs:
     let
       mkPkgs =
         system: pkg:
@@ -79,6 +80,16 @@
             modules = [
               ./spatzenbad.nix
               ./modules/steam.nix
+              jovian-nixos.nixosModules.default
+              {
+                jovian.devices.steamdeck.enable = true;
+                jovian.steam.autoStart = true;
+                jovian.steam.enable = true;
+                jovian.devices.steamdeck.autoUpdate = true;
+                jovian.steam.user = default_user.handle;
+                jovian.steam.desktopSession = "niri";
+                
+              }
             ] ++ niri;
           };
         spatzenschirm =

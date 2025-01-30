@@ -54,7 +54,7 @@
   
   services.xserver = {
     enable = false;
-    displayManager.gdm.enable = true;
+    displayManager.gdm.enable = false;
     desktopManager.gnome.enable = true;
     xkb = {
       layout = "us";

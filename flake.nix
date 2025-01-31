@@ -29,19 +29,16 @@
         ./modules/fonts.nix
         ./modules/terminal.nix
         ./modules/fish.nix
+        ./modules/linuxuser.nix
       ];
-      laptop = terminal ++ [
+      desktop = terminal ++ [
         ./modules/sound.nix
         ./modules/bluetooth.nix
-        ./modules/linuxuser.nix
         ./modules/yubikey.nix
-        ./modules/tlp.nix
-      ];
-      sway = laptop ++ [
-        ./modules/sway
-      ];
-      niri = laptop ++ [
         ./modules/niri
+      ];
+      laptop = desktop ++ [
+        ./modules/tlp.nix
       ];
       default_user = {
         handle = "philipp";
@@ -63,6 +60,25 @@
       };
       nixosConfigurations = {
 
+        tischspatz =
+          let
+            user = default_user;
+          in
+          nixpkgs.lib.nixosSystem {
+
+            pkgs = mkPkgs "x86_64-linux" nixpkgs;
+            specialArgs = {
+              inherit
+                self
+                inputs
+                user
+                ;
+            };
+            modules = [
+              ./tischspatz.nix
+              ./modules/steam.nix
+            ] ++ desktop;
+          };
         spatzenbad =
           let
             user = default_user;
@@ -82,6 +98,7 @@
               ./modules/steam.nix
               jovian-nixos.nixosModules.default
               {
+                services.xserver.displayManager.gdm.enable = false;
                 jovian.devices.steamdeck.enable = true;
                 jovian.steam.autoStart = true;
                 jovian.steam.enable = true;
@@ -90,7 +107,7 @@
                 jovian.steam.desktopSession = "niri";
                 
               }
-            ] ++ niri;
+            ] ++ laptop;
           };
         spatzenschirm =
           let
@@ -110,7 +127,7 @@
               inputs.nixos-hardware.nixosModules.minisforum-v3
               ./spatzenschirm.nix
               ./modules/steam.nix
-            ] ++ niri;
+            ] ++ laptop;
           };
         denkspatz =
           let
@@ -129,7 +146,7 @@
             modules = [
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
               ./denkspatz.nix
-            ] ++ niri;
+            ] ++ laptop;
           };
 
         herrspatz =
@@ -150,7 +167,7 @@
               inputs.nixos-hardware.nixosModules.apple-macbook-pro-11-5
               #              inputs.nixos-hardware.nixosModules.common-gpu-amd-southern-islands
               ./herrspatz.nix
-            ] ++ niri;
+            ] ++ laptop;
           };
       };
     };

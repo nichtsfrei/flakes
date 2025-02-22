@@ -3,14 +3,14 @@
 {
   hardware.enableAllFirmware = true;
   system.autoUpgrade.enable = true;
-  boot.binfmt.registrations.appimage = {
-    wrapInterpreterInShell = false;
-    interpreter = "${pkgs.appimage-run}/bin/appimage-run";
-    recognitionType = "magic";
-    offset = 0;
-    mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
-    magicOrExtension = ''\x7fELF....AI\x02'';
-  };
+  # boot.binfmt.registrations.appimage = {
+  #   wrapInterpreterInShell = false;
+  #   interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+  #   recognitionType = "magic";
+  #   offset = 0;
+  #   mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+  #   magicOrExtension = ''\x7fELF....AI\x02'';
+  # };
 
   nix = {
     extraOptions = ''
@@ -50,11 +50,6 @@
       defaultNetwork.settings.dns_enabled = true;
     };
   };
-
-  # exclude to k3s.nix
-  networking.firewall.allowedUDPPorts = [
-    # 8472 # k3s, flannel: required if using multi-node for inter-node networking
-  ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

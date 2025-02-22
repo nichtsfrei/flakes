@@ -6,8 +6,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     jovian-nixos.url = "github:Jovian-Experiments/Jovian-NixOS";
     nixos-hardware = {
-      # url =  "github:NixOS/nixos-hardware/master";
-      url =  "github:nichtsfrei/nixos-hardware/master";
+      url =  "github:NixOS/nixos-hardware/master";
+      # url =  "github:nichtsfrei/nixos-hardware/master";
     };
   };
 

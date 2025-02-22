@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, enable_gdm ? true, ... }:
 {
 
   environment.systemPackages = with pkgs; [
@@ -29,6 +29,7 @@
   services.gnome.gnome-keyring.enable = true;
   services.gnome.core-utilities.enable = false;
   services.gnome.gnome-remote-desktop.enable = false;
+  services.flatpak.enable = true;
 
   security.pam.services.swaylock = { };
   programs.niri = {
@@ -54,7 +55,7 @@
   
   services.xserver = {
     enable = false;
-    displayManager.gdm.enable = true;
+    displayManager.gdm.enable = enable_gdm;
     desktopManager.gnome.enable = true;
     xkb = {
       layout = "us";

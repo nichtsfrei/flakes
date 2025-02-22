@@ -8,72 +8,69 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-  boot.initrd.kernelModules = ["amdgpu" "dm-snapshot" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  boot.initrd.luks.devices = {
-    luksroot = {
-      device = "/dev/disk/by-uuid/c6469e71-9092-488d-b40b-fb3fcfcc50b5";
-      allowDiscards = true;
-      preLVM = true;
-    };
-  };
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/7e83b38c-ac3b-4f92-8c86-714e7524a783";
+    { device = "/dev/disk/by-uuid/2b3111b4-c931-4c48-b32b-60f75b4a64eb";
       fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" ];
+      options = [ "subvol=root" "compress=zstd"];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/7e83b38c-ac3b-4f92-8c86-714e7524a783";
+    { device = "/dev/disk/by-uuid/2b3111b4-c931-4c48-b32b-60f75b4a64eb";
       fsType = "btrfs";
       options = [ "subvol=home" "compress=zstd"];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/7e83b38c-ac3b-4f92-8c86-714e7524a783";
+    { device = "/dev/disk/by-uuid/2b3111b4-c931-4c48-b32b-60f75b4a64eb";
       fsType = "btrfs";
       options = [ "subvol=nix" "compress=zstd" "noatime"];
     };
 
   fileSystems."/swap" =
-    { device = "/dev/disk/by-uuid/7e83b38c-ac3b-4f92-8c86-714e7524a783";
+    { device = "/dev/disk/by-uuid/2b3111b4-c931-4c48-b32b-60f75b4a64eb";
       fsType = "btrfs";
-      options = [ "subvol=swap" "noatime" ];
+      options = [ "subvol=swap" "noatime"];
     };
 
+
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/4939-04A2";
+    { device = "/dev/disk/by-uuid/8983-59A1";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  swapDevices = [ ];
+  swapDevices = [ { device = "/swap/swapfile"; } ];
+
+  # AUTO SCRUB
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "monthly";
+    fileSystems = [ "/" ];
+  };
+
+  
+  boot.initrd.luks.devices = {
+    luksroot = {
+      # blkid UUID of second partition
+      device = "/dev/disk/by-uuid/8dd9ed7a-32b1-4a29-b5a7-936b89c81994";
+      allowDiscards = true;
+      preLVM = true;
+    };
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.hostName = "spatzenschirm";
+  networking.hostName = "schirmspatz";
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.eth0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  
-  hardware = {
-    graphics = {
-        enable = true;
-        enable32Bit = true;
-    };
-
-    amdgpu.amdvlk = {
-        enable = true;
-        support32Bit.enable = true;
-    };
-  };
-
 }

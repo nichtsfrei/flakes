@@ -3,7 +3,7 @@
   inputs = {
     # TODO: this does not work on new installs, maybe better to move out
     lkb.url = "path:./lkb";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     jovian-nixos.url = "github:Jovian-Experiments/Jovian-NixOS";
     nixos-hardware = {
       # url =  "github:NixOS/nixos-hardware/master";
@@ -29,22 +29,26 @@
         ./modules/fonts.nix
         ./modules/terminal.nix
         ./modules/fish.nix
-        ./modules/linuxuser.nix
       ];
-      desktop = terminal ++ [
+      laptop = terminal ++ [
         ./modules/sound.nix
         ./modules/bluetooth.nix
+        ./modules/linuxuser.nix
         ./modules/yubikey.nix
-        ./modules/niri
-      ];
-      laptop = desktop ++ [
         ./modules/tlp.nix
       ];
-      default_user = {
+      sway = laptop ++ [
+        ./modules/sway
+      ];
+      niri = laptop ++ [
+        ./modules/niri
+      ];
+      user = {
         handle = "philipp";
         name = "Philipp Eder";
         email = "philipp.eder@posteo.net";
       };
+      enable_gdm = true;
     in
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
@@ -60,28 +64,9 @@
       };
       nixosConfigurations = {
 
-        tischspatz =
-          let
-            user = default_user;
-          in
-          nixpkgs.lib.nixosSystem {
-
-            pkgs = mkPkgs "x86_64-linux" nixpkgs;
-            specialArgs = {
-              inherit
-                self
-                inputs
-                user
-                ;
-            };
-            modules = [
-              ./tischspatz.nix
-              ./modules/steam.nix
-            ] ++ desktop;
-          };
         spatzenbad =
           let
-            user = default_user;
+            enable_gdm = false;
           in
           nixpkgs.lib.nixosSystem {
 
@@ -91,6 +76,7 @@
                 self
                 inputs
                 user
+                enable_gdm
                 ;
             };
             modules = [
@@ -98,21 +84,17 @@
               ./modules/steam.nix
               jovian-nixos.nixosModules.default
               {
-                services.xserver.displayManager.gdm.enable = false;
                 jovian.devices.steamdeck.enable = true;
                 jovian.steam.autoStart = true;
                 jovian.steam.enable = true;
                 jovian.devices.steamdeck.autoUpdate = true;
-                jovian.steam.user = default_user.handle;
+                jovian.steam.user = user.handle;
                 jovian.steam.desktopSession = "niri";
                 
               }
-            ] ++ laptop;
+            ] ++ niri;
           };
-        spatzenschirm =
-          let
-            user = default_user;
-          in
+        schirmspatz =
           nixpkgs.lib.nixosSystem {
 
             pkgs = mkPkgs "x86_64-linux" nixpkgs;
@@ -121,18 +103,16 @@
                 self
                 inputs
                 user
+                enable_gdm
                 ;
             };
             modules = [
               inputs.nixos-hardware.nixosModules.minisforum-v3
-              ./spatzenschirm.nix
+              ./schirmspatz.nix
               ./modules/steam.nix
-            ] ++ laptop;
+            ] ++ niri;
           };
         denkspatz =
-          let
-            user = default_user;
-          in
           nixpkgs.lib.nixosSystem {
             pkgs = mkPkgs "x86_64-linux" nixpkgs;
 
@@ -146,13 +126,10 @@
             modules = [
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
               ./denkspatz.nix
-            ] ++ laptop;
+            ] ++ niri;
           };
 
         herrspatz =
-          let
-            user = default_user;
-          in
           nixpkgs.lib.nixosSystem {
             pkgs = mkPkgs "x86_64-linux" nixpkgs;
 
@@ -167,7 +144,7 @@
               inputs.nixos-hardware.nixosModules.apple-macbook-pro-11-5
               #              inputs.nixos-hardware.nixosModules.common-gpu-amd-southern-islands
               ./herrspatz.nix
-            ] ++ laptop;
+            ] ++ niri;
           };
       };
     };

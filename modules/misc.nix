@@ -38,7 +38,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  services.fwupd.enable = true;
+  services.fwupd.enable = false;
 
   hardware.keyboard.qmk.enable = true;
   

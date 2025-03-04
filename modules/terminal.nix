@@ -18,6 +18,7 @@
     helix
     man-pages
     man-pages-posix
+    htop
   ];
   documentation.dev.enable = true;
   documentation.man.generateCaches = true;

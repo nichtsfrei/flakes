@@ -16,12 +16,13 @@
     swaylock
     waybar
     pamixer
-    firefox
+    librewolf
     squeekboard
     playerctl
     xwayland-satellite
     signal-desktop
     element-desktop
+    thunderbird
     inputs.lkb.packages."${pkgs.system}".lkb
   ];
 

@@ -17,13 +17,17 @@
     waybar
     pamixer
     librewolf
+    # needed for characorder
+    chromium
     squeekboard
     playerctl
     xwayland-satellite
     signal-desktop
     element-desktop
+    shortwave
     thunderbird
-    inputs.lkb.packages."${pkgs.system}".lkb
+    gnomeExtensions.paperwm # maybe gnome is just superior on a tablet?
+    # inputs.lkb.packages."${pkgs.system}".lkb
   ];
 
   services.udisks2.enable = true;
@@ -37,17 +41,17 @@
     enable = true;
   };
 
-  systemd.user.services.lkbd = {
-    enable = true;
-    after = [ "network.target" ];
-    wantedBy = [ "default.target" ];
-    description = "lkbd";
-    serviceConfig = {
-        Type = "simple";
-        ExecStart = "${inputs.lkb.packages."${pkgs.system}".lkb}/bin/lkbd";
-        Restart = "always";
-    };
-};
+  # systemd.user.services.lkbd = {
+  #   enable = true;
+  #   after = [ "network.target" ];
+  #   wantedBy = [ "default.target" ];
+  #   description = "lkbd";
+  #   serviceConfig = {
+  #       Type = "simple";
+  #       ExecStart = "${inputs.lkb.packages."${pkgs.system}".lkb}/bin/lkbd";
+  #       Restart = "always";
+  #   };
+  # };
 
   # programs.fish.loginShellInit = ''
   #   set TTY1 (tty)

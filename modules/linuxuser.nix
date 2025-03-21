@@ -22,6 +22,7 @@ in
       "libvirtd"
       "qemu-libvirtd"
       "plugdev"
+      "dialout"
     ];
   };
   system.activationScripts.createGitconfig = ''

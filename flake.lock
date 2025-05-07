@@ -24,15 +24,14 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-IHlytE65Ox3Na87NYxe9y2GVgLGMi0+nwYfbTBpQII8=",
         "path": "./lkb",
         "type": "path"
       },
       "original": {
         "path": "./lkb",
         "type": "path"
-      }
+      },
+      "parent": []
     },
     "nix-github-actions": {
       "inputs": {

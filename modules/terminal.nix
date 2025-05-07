@@ -19,6 +19,7 @@
     man-pages
     man-pages-posix
     htop
+    gcc
   ];
   documentation.dev.enable = true;
   documentation.man.generateCaches = true;

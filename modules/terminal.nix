@@ -15,7 +15,7 @@
     distrobox
     appimage-run
     tmux
-    helix
+    neovim
     man-pages
     man-pages-posix
     htop

@@ -19,7 +19,7 @@
       nixup = "pushd ~/src/nichtsfrei/flakes; nix flake update; nixswitch; popd";
     };
     shellInit = ''
-      set EDITOR hx
+      set EDITOR nvim
     '';
     enable = true;
   };

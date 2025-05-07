@@ -31,13 +31,17 @@ in
       name = ${name}
       email = ${email}
     [core]
-      editor = hx
+      editor = nvim
     EOF
     chown ${username}:users /home/${username}/.gitconfig
   '';
   system.activationScripts.copyConfig = ''
     mkdir -p /home/${username}/.config
-    cp -r ${../dotfiles}/* /home/${username}/.config/
-    chown -R ${username}:users /home/${username}/.config
-  '';
+    cp -r ${../core-dotfiles}/* /tmp/${username}/.config/
+    chown -R ${username}:users /tmp/${username}/.config
+    find /tmp/${username}/.config -type d -exec chmod 755 {} \;
+    find /tmp/${username}/.config -type f -exec chmod 644 {} \;
+    cp -r /tmp/${username}/.config/* /home/${username}/.config/
+    rm -rf /tmp/${username}/.config
+    '';
 }

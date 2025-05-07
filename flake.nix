@@ -43,6 +43,9 @@
       niri = laptop ++ [
         ./modules/niri
       ];
+      gnome = laptop ++ [
+        ./modules/gnome
+      ];
       user = {
         handle = "philipp";
         name = "Philipp Eder";
@@ -59,7 +62,7 @@
           pkgs.nixfmt-rfc-style
         ];
         shellHook = ''
-          hx flake.nix
+          nvim flake.nix
         '';
       };
       nixosConfigurations = {
@@ -111,7 +114,7 @@
               ./schirmspatz.nix
               ./modules/steam.nix
               
-            ] ++ niri;
+            ] ++ gnome;
           };
         denkspatz =
           nixpkgs.lib.nixosSystem {

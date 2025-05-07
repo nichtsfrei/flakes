@@ -8,38 +8,38 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/2b3111b4-c931-4c48-b32b-60f75b4a64eb";
+    { device = "/dev/disk/by-uuid/4201a4e8-5288-4dd5-95fe-ce8cef962f9b";
       fsType = "btrfs";
       options = [ "subvol=root" "compress=zstd"];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/2b3111b4-c931-4c48-b32b-60f75b4a64eb";
+    { device = "/dev/disk/by-uuid/4201a4e8-5288-4dd5-95fe-ce8cef962f9b";
       fsType = "btrfs";
       options = [ "subvol=home" "compress=zstd"];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/2b3111b4-c931-4c48-b32b-60f75b4a64eb";
+    { device = "/dev/disk/by-uuid/4201a4e8-5288-4dd5-95fe-ce8cef962f9b";
       fsType = "btrfs";
       options = [ "subvol=nix" "compress=zstd" "noatime"];
     };
 
   fileSystems."/swap" =
-    { device = "/dev/disk/by-uuid/2b3111b4-c931-4c48-b32b-60f75b4a64eb";
+    { device = "/dev/disk/by-uuid/4201a4e8-5288-4dd5-95fe-ce8cef962f9b";
       fsType = "btrfs";
       options = [ "subvol=swap" "noatime"];
     };
 
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/8983-59A1";
+    { device = "/dev/disk/by-uuid/615F-2E83";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
@@ -57,7 +57,7 @@
   boot.initrd.luks.devices = {
     luksroot = {
       # blkid UUID of second partition
-      device = "/dev/disk/by-uuid/8dd9ed7a-32b1-4a29-b5a7-936b89c81994";
+      device = "/dev/disk/by-uuid/c3227471-d332-46c3-9293-b5f4bf446a0e";
       allowDiscards = true;
       preLVM = true;
     };

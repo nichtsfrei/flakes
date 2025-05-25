@@ -1,8 +1,6 @@
 {
   description = "nichtsfrei's nixos configuration";
   inputs = {
-    # TODO: this does not work on new installs, maybe better to move out
-    lkb.url = "path:./lkb";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     jovian-nixos.url = "github:Jovian-Experiments/Jovian-NixOS";
     nixos-hardware = {
@@ -125,6 +123,7 @@
                 self
                 inputs
                 user
+                enable_gdm
                 ;
             };
             modules = [

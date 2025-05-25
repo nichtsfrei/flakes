@@ -19,20 +19,6 @@
         "type": "github"
       }
     },
-    "lkb": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "path": "./lkb",
-        "type": "path"
-      },
-      "original": {
-        "path": "./lkb",
-        "type": "path"
-      },
-      "parent": []
-    },
     "nix-github-actions": {
       "inputs": {
         "nixpkgs": [
@@ -89,27 +75,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1736517266,
-        "narHash": "sha256-B40MM4Fu1lVXdspYGyLDSK924B5PI0/xZSyHmo1wqDc=",
+        "lastModified": 1748026106,
+        "narHash": "sha256-6m1Y3/4pVw1RWTsrkAK2VMYSzG4MMIj7sqUy7o8th1o=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e6752bc1ad9fed21141cbb389c8478b268ff06ec",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable-small",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1747744144,
-        "narHash": "sha256-W7lqHp0qZiENCDwUZ5EX/lNhxjMdNapFnbErcbnP11Q=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "2795c506fe8fb7b03c36ccb51f75b6df0ab2553f",
+        "rev": "063f43f2dbdef86376cc29ad646c45c46e93234c",
         "type": "github"
       },
       "original": {
@@ -122,9 +92,8 @@
     "root": {
       "inputs": {
         "jovian-nixos": "jovian-nixos",
-        "lkb": "lkb",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_2"
       }
     }
   },

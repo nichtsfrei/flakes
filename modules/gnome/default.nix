@@ -5,21 +5,37 @@
     xdg-utils
     pavucontrol
     xdg-desktop-portal-gnome
-    fuzzel
-    swayidle
-    swaylock
-    waybar
     pamixer
     librewolf
     # needed for characorder
     # chromium
-    squeekboard
     playerctl
     xwayland-satellite
     signal-desktop
     element-desktop
     shortwave
+    wl-clipboard
+    vlc
+    evolution
   ];
+
+  environment.gnome.excludePackages = (with pkgs; [
+    atomix # puzzle game
+    cheese # webcam tool
+    epiphany # web browser
+    evince # document viewer
+    geary # email reader
+    gedit # text editor
+    gnome-characters
+    gnome-music
+    gnome-photos
+    gnome-terminal
+    gnome-tour
+    hitori # sudoku game
+    iagno # go game
+    tali # poker game
+    totem # video player
+  ]);
 
   services.udisks2.enable = true;
   services.gnome.gnome-keyring.enable = true;

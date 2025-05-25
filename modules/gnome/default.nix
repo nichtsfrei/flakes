@@ -8,7 +8,7 @@
     pamixer
     librewolf
     # needed for characorder
-    # chromium
+    chromium
     playerctl
     xwayland-satellite
     signal-desktop

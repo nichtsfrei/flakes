@@ -130,7 +130,7 @@
             modules = [
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
               ./denkspatz.nix
-            ] ++ niri;
+            ] ++ gnome;
           };
 
         herrspatz =

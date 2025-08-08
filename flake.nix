@@ -111,6 +111,7 @@
               inputs.nixos-hardware.nixosModules.minisforum-v3
               ./schirmspatz.nix
               ./modules/steam.nix
+              ./modules/waydroid.nix
               
             ] ++ gnome;
           };

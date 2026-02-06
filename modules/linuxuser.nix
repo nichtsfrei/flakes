@@ -36,9 +36,4 @@ in
     EOF
     chown ${username}:users /home/${username}/.gitconfig
   '';
-  system.activationScripts.checkConfig = ''
-    su -c "mkdir -p /home/${username}/src/nichtsfrei" ${username}
-    su -c "git clone git@github.com:nichtsfrei/dotfiles.git /home/${username}/src/nichtsfrei/dotfiles || true" ${username}
-    su -c "sh /home/${username}/src/nichtsfrei/dotfiles/install.sh" ${username}
-    '';
 }

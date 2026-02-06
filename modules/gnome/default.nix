@@ -16,7 +16,7 @@
     shortwave
     wl-clipboard
     vlc
-    evolution
+    keepassxc
   ];
 
   environment.gnome.excludePackages = (with pkgs; [

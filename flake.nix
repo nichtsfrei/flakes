@@ -34,12 +34,6 @@
         ./modules/linuxuser.nix
         ./modules/yubikey.nix
       ];
-      sway = laptop ++ [
-        ./modules/sway
-      ];
-      niri = laptop ++ [
-        ./modules/niri
-      ];
       gnome = laptop ++ [
         ./modules/gnome
       ];
@@ -111,7 +105,6 @@
               ./schirmspatz.nix
               ./modules/steam.nix
               ./modules/waydroid.nix
-              
             ] ++ gnome;
           };
         denkspatz =
@@ -145,6 +138,7 @@
             };
             modules = [
               ./tischspatz.nix
+              ./modules/steam.nix
             ] ++ gnome;
           };
       };

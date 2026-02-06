@@ -14,31 +14,31 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/a897837d-9b84-4e4e-ae62-e2704341e202";
+    { device = "/dev/mapper/vogrona-lovona";
       fsType = "btrfs";
       options = [ "subvol=root" "compress=zstd" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/a897837d-9b84-4e4e-ae62-e2704341e202";
+    { device = "/dev/mapper/vogrona-lovona";
       fsType = "btrfs";
       options = [ "subvol=home" "compress=zstd" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/a897837d-9b84-4e4e-ae62-e2704341e202";
+    { device = "/dev/mapper/vogrona-lovona";
       fsType = "btrfs";
       options = [ "subvol=nix" "compress=zstd" "noatime"];
     };
 
   fileSystems."/swap" =
-    { device = "/dev/disk/by-uuid/a897837d-9b84-4e4e-ae62-e2704341e202";
+    { device = "/dev/mapper/vogrona-lovona";
       fsType = "btrfs";
       options = [ "subvol=swap" "noatime"];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2507-C675";
+    { device = "/dev/nvme0n1p1";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
@@ -69,7 +69,7 @@
   
   boot.initrd.luks.devices = {
     luksroot = {
-      device = "/dev/disk/by-uuid/2debe447-8c90-48fe-bd91-de64bc44feca";
+      device = "/dev/nvme0n1p2";
       allowDiscards = true;
       preLVM = true;
     };

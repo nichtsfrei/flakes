@@ -33,7 +33,6 @@
         ./modules/bluetooth.nix
         ./modules/linuxuser.nix
         ./modules/yubikey.nix
-        ./modules/tlp.nix
       ];
       sway = laptop ++ [
         ./modules/sway
@@ -133,7 +132,7 @@
             ] ++ gnome;
           };
 
-        herrspatz =
+        tischspatz =
           nixpkgs.lib.nixosSystem {
             pkgs = mkPkgs "x86_64-linux" nixpkgs;
 
@@ -145,10 +144,8 @@
                 ;
             };
             modules = [
-              inputs.nixos-hardware.nixosModules.apple-macbook-pro-11-5
-              #              inputs.nixos-hardware.nixosModules.common-gpu-amd-southern-islands
-              ./herrspatz.nix
-            ] ++ niri;
+              ./tischspatz.nix
+            ] ++ gnome;
           };
       };
     };

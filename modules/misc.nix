@@ -2,6 +2,10 @@
 
 {
   hardware.enableAllFirmware = true;
+  hardware.uinput.enable = true;
+  services.udev.extraRules = ''
+  KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput", GROUP="plugdev", MODE="0660"
+'';
 
   nix = {
     extraOptions = ''

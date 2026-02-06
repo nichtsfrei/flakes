@@ -5,7 +5,7 @@
     jovian-nixos.url = "github:Jovian-Experiments/Jovian-NixOS";
     nixos-hardware = {
 #      url =  "github:NixOS/nixos-hardware/master";
-      url =  "github:nichtsfrei/nixos-hardware/master";
+      url =  "github:NixOS/nixos-hardware/master";
     };
   };
 
@@ -83,10 +83,10 @@
                 jovian.steam.enable = true;
                 jovian.devices.steamdeck.autoUpdate = true;
                 jovian.steam.user = user.handle;
-                jovian.steam.desktopSession = "niri";
+                jovian.steam.desktopSession = "gnome";
                 
               }
-            ] ++ niri;
+            ] ++ gnome;
           };
         schirmspatz =
           nixpkgs.lib.nixosSystem {
@@ -103,7 +103,6 @@
             modules = [
               inputs.nixos-hardware.nixosModules.minisforum-v3
               ./schirmspatz.nix
-              ./modules/steam.nix
               ./modules/waydroid.nix
             ] ++ gnome;
           };

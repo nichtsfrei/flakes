@@ -32,7 +32,7 @@ mount -o compress=zstd,subvol=root $RP_NAME /mnt
 mkdir /mnt/{home,nix,swap}
 mount -o compress=zstd,subvol=home $RP_NAME /mnt/home
 mount -o compress=zstd,noatime,subvol=nix $RP_NAME /mnt/nix
-mount -o compress=noatime,subvol=swap $RP_NAME /mnt/swap
+mount -o compress=no,noatime,subvol=swap $RP_NAME /mnt/swap
 
 mkdir /mnt/boot
 mount ${PART}1 /mnt/boot

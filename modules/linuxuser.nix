@@ -37,8 +37,8 @@ in
     chown ${username}:users /home/${username}/.gitconfig
   '';
   system.activationScripts.checkConfig = ''
-    sudo -u ${username} mkdir -p /home/${username}/src/nichtsfrei
-    sudo -u ${username} git clone git@github.com:nichtsfrei/dotfiles.git /home/${username}/src/nichtsfrei/dotfiles || true
-    sudo -u ${username} sh /home/${username}/src/nichtsfrei/dotfiles/install.sh
+    su -c "mkdir -p /home/${username}/src/nichtsfrei" ${username}
+    su -c "git clone git@github.com:nichtsfrei/dotfiles.git /home/${username}/src/nichtsfrei/dotfiles || true" ${username}
+    su -c "sh /home/${username}/src/nichtsfrei/dotfiles/install.sh" ${username}
     '';
 }

@@ -124,6 +124,23 @@
             ] ++ gnome;
           };
 
+        legionspatz =
+          nixpkgs.lib.nixosSystem {
+            pkgs = mkPkgs "x86_64-linux" nixpkgs;
+
+            specialArgs = {
+              inherit
+                self
+                inputs
+                user
+                ;
+            };
+            modules = [
+              ./legionspatz.nix
+            ] ++ gnome;
+          };
+
+
         tischspatz =
           nixpkgs.lib.nixosSystem {
             pkgs = mkPkgs "x86_64-linux" nixpkgs;

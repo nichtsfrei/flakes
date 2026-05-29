@@ -7,7 +7,9 @@
 #      url =  "github:NixOS/nixos-hardware/master";
       url =  "github:NixOS/nixos-hardware/master";
     };
+    nix-amd-ai.url = "github:noamsto/nix-amd-ai";
   };
+
 
   outputs =
     { jovian-nixos, nixpkgs, self, ... }@inputs:
@@ -58,54 +60,6 @@
       };
       nixosConfigurations = {
 
-        spatzenbad =
-          let
-            enable_gdm = false;
-          in
-          nixpkgs.lib.nixosSystem {
-
-            pkgs = mkPkgs "x86_64-linux" nixpkgs;
-            specialArgs = {
-              inherit
-                self
-                inputs
-                user
-                enable_gdm
-                ;
-            };
-            modules = [
-              ./spatzenbad.nix
-              ./modules/steam.nix
-              jovian-nixos.nixosModules.default
-              {
-                jovian.devices.steamdeck.enable = true;
-                jovian.steam.autoStart = true;
-                jovian.steam.enable = true;
-                jovian.devices.steamdeck.autoUpdate = true;
-                jovian.steam.user = user.handle;
-                jovian.steam.desktopSession = "gnome";
-                
-              }
-            ] ++ gnome;
-          };
-        schirmspatz =
-          nixpkgs.lib.nixosSystem {
-
-            pkgs = mkPkgs "x86_64-linux" nixpkgs;
-            specialArgs = {
-              inherit
-                self
-                inputs
-                user
-                enable_gdm
-                ;
-            };
-            modules = [
-              inputs.nixos-hardware.nixosModules.minisforum-v3
-              ./schirmspatz.nix
-              ./modules/waydroid.nix
-            ] ++ gnome;
-          };
         denkspatz =
           nixpkgs.lib.nixosSystem {
             pkgs = mkPkgs "x86_64-linux" nixpkgs;
@@ -136,6 +90,8 @@
             };
             modules = [
               ./manaspatz.nix
+              ./modules/steam.nix
+              ./modules/llm.nix
             ] ++ gnome;
           };
 

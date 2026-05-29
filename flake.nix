@@ -123,6 +123,21 @@
               ./denkspatz.nix
             ] ++ gnome;
           };
+        manaspatz =
+          nixpkgs.lib.nixosSystem {
+            pkgs = mkPkgs "x86_64-linux" nixpkgs;
+
+            specialArgs = {
+              inherit
+                self
+                inputs
+                user
+                ;
+            };
+            modules = [
+              ./manaspatz.nix
+            ] ++ gnome;
+          };
 
         legionspatz =
           nixpkgs.lib.nixosSystem {

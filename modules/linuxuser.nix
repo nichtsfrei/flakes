@@ -24,6 +24,7 @@ in
       "plugdev"
       "dialout"
       "kvm"
+      "tty"
     ];
   };
   system.activationScripts.createGitconfig = ''

@@ -17,9 +17,11 @@
     wl-clipboard
     vlc
     keepassxc
+    ghostty # urgh, hate the hype but either they don't support OSC52 (WTF) or they look ugly
   ];
 
   environment.gnome.excludePackages = (with pkgs; [
+    gnome-terminal # OSC52 issues
     atomix # puzzle game
     epiphany # web browser
     geary # email reader

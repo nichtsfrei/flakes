@@ -1,13 +1,7 @@
-{ inputs, user, ... }: {
-  imports = [inputs.nix-amd-ai.nixosModules.default];
+{ pkgs, inputs, user, ... }: {
 
-  hardware.amd-npu = {
-    enable = true;
-    enableFastFlowLM = true;  # LLM inference on NPU
-    enableLemonade = true;    # OpenAI-compatible API server
-    enableROCm = true;        # ROCm GPU backends (llamacpp + sd-cpp)
-    enableVulkan = true;      # Vulkan GPU backends (llamacpp + whispercpp)
-    enableImageGen = true;    # default true; set false to drop sd-cpp from closure
-    lemonade.user = user.handle;
-  };
+  environment.systemPackages = with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
+    pi
+    pkgs.llama-cpp-rocm
+  ];
 }

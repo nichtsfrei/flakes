@@ -7,7 +7,8 @@
 #      url =  "github:NixOS/nixos-hardware/master";
       url =  "github:NixOS/nixos-hardware/master";
     };
-    nix-amd-ai.url = "github:noamsto/nix-amd-ai";
+    # nix-amd-ai.url = "github:noamsto/nix-amd-ai";
+    llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
 

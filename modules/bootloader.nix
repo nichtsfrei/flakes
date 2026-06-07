@@ -12,7 +12,7 @@
       enable = false;
     };
     loader = {
-      timeout = 2;
+      timeout = 4;
       systemd-boot.enable = true;
       efi = {
         canTouchEfiVariables = true;

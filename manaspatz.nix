@@ -11,13 +11,11 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  specialisation.llm.configuration = {
-	  boot.kernelParams = [
-	    "amd_iommu=off"
-	    "amdgpu.gttsize=126976"
-	    "ttm.pages_limit=32505856"
-	  ];
-  };
+  boot.kernelParams = [
+    "amd_iommu=off"
+    "amdgpu.gttsize=126976"
+    "ttm.pages_limit=32505856"
+  ];
 
   fileSystems."/" =
     { device = "/dev/mapper/vogrona-lovona";

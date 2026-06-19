@@ -40,6 +40,9 @@
       gnome = laptop ++ [
         ./modules/gnome
       ];
+      kde = laptop ++ [
+        ./modules/kde
+      ];
       user = {
         handle = "philipp";
         name = "Philipp Eder";

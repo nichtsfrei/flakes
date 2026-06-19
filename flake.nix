@@ -2,18 +2,19 @@
   description = "nichtsfrei's nixos configuration";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    jovian-nixos.url = "github:Jovian-Experiments/Jovian-NixOS";
     nixos-hardware = {
-#      url =  "github:NixOS/nixos-hardware/master";
       url =  "github:NixOS/nixos-hardware/master";
     };
-    # nix-amd-ai.url = "github:noamsto/nix-amd-ai";
-    llm-agents.url = "github:numtide/llm-agents.nix";
+	llm-agents.url = "github:numtide/llm-agents.nix";
+	noctalia = {
+      url = "github:noctalia-dev/noctalia/legacy-v4";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
 
   outputs =
-    { jovian-nixos, nixpkgs, self, ... }@inputs:
+    { nixpkgs, self, ... }@inputs:
     let
       mkPkgs =
         system: pkg:
@@ -40,8 +41,8 @@
       gnome = laptop ++ [
         ./modules/gnome
       ];
-      kde = laptop ++ [
-        ./modules/kde
+      niri = laptop ++ [
+        ./modules/niri
       ];
       user = {
         handle = "philipp";

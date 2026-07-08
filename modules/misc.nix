@@ -25,7 +25,9 @@
   services.fwupd.enable = true;
 
   hardware.keyboard.qmk.enable = true;
-  
+  hardware.sane.enable = true;
+  hardware.sane.extraBackends = [ pkgs.epkowa ];
+
   virtualisation = {
     podman = {
       enable = true;
@@ -38,4 +40,20 @@
   networking.firewall.enable = true;
 
   system.stateVersion = "22.11"; # Did you read the comment?
+
+  services.avahi = {
+  enable = true;
+  nssmdns4 = true;
+  openFirewall = true;
+};
+
+services.printing = {
+  enable = true;
+  drivers = with pkgs; [
+    cups-filters
+    cups-browsed
+    brlaser
+  ];
+};
+services.ipp-usb.enable = true;
 }

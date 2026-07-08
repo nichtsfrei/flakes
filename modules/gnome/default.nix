@@ -6,7 +6,8 @@
     pavucontrol
     xdg-desktop-portal-gnome
     pamixer
-    #librewolf # unmaintained?
+    librewolf
+    chromium
     playerctl
     xwayland-satellite
     signal-desktop

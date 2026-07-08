@@ -20,7 +20,7 @@
     gcc
   ];
   documentation.dev.enable = true;
-  documentation.man.generateCaches = true;
+  documentation.man.cache.enable = true;
 
   hardware.gpgSmartcards.enable = true;
 }

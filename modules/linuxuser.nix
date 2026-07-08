@@ -25,6 +25,8 @@ in
       "dialout"
       "kvm"
       "tty"
+      "scanner"
+      "lp"
     ];
   };
   system.activationScripts.createGitconfig = ''

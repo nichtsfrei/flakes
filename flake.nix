@@ -3,15 +3,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware = {
-      url =  "github:NixOS/nixos-hardware/master";
+      url = "github:NixOS/nixos-hardware/master";
     };
-	llm-agents.url = "github:numtide/llm-agents.nix";
-	noctalia = {
-      url = "github:noctalia-dev/noctalia/legacy-v4";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    llm-agents.url = "github:numtide/llm-agents.nix";
   };
-
 
   outputs =
     { nixpkgs, self, ... }@inputs:
@@ -41,98 +36,87 @@
       gnome = laptop ++ [
         ./modules/gnome
       ];
-      niri = laptop ++ [
-        ./modules/niri
-      ];
       user = {
         handle = "philipp";
         name = "Philipp Eder";
         email = "philipp.eder@posteo.net";
       };
-      enable_gdm = true;
     in
     {
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
       devShells.x86_64-linux.default = pkgs.mkShell {
-        name = "Shellus";
-        buildInputs = [
-          pkgs.nil
-          pkgs.nixfmt-rfc-style
-        ];
+        name = "flake shell";
         shellHook = ''
           nvim flake.nix
         '';
       };
       nixosConfigurations = {
 
-        denkspatz =
-          nixpkgs.lib.nixosSystem {
-            pkgs = mkPkgs "x86_64-linux" nixpkgs;
+        denkspatz = nixpkgs.lib.nixosSystem {
+          pkgs = mkPkgs "x86_64-linux" nixpkgs;
 
-            specialArgs = {
-              inherit
-                self
-                inputs
-                user
-                enable_gdm
-                ;
-            };
-            modules = [
-              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
-              ./denkspatz.nix
-            ] ++ gnome;
+          specialArgs = {
+            inherit
+              self
+              inputs
+              user
+              ;
           };
-        manaspatz =
-          nixpkgs.lib.nixosSystem {
-            pkgs = mkPkgs "x86_64-linux" nixpkgs;
+          modules = [
+            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
+            ./denkspatz.nix
+          ]
+          ++ gnome;
+        };
+        manaspatz = nixpkgs.lib.nixosSystem {
+          pkgs = mkPkgs "x86_64-linux" nixpkgs;
 
-            specialArgs = {
-              inherit
-                self
-                inputs
-                user
-                ;
-            };
-            modules = [
-              ./manaspatz.nix
-              ./modules/steam.nix
-              ./modules/llm.nix
-            ] ++ gnome;
+          specialArgs = {
+            inherit
+              self
+              inputs
+              user
+              ;
           };
+          modules = [
+            ./manaspatz.nix
+            ./modules/steam.nix
+            ./modules/llm.nix
+          ]
+          ++ gnome;
+        };
 
-        legionspatz =
-          nixpkgs.lib.nixosSystem {
-            pkgs = mkPkgs "x86_64-linux" nixpkgs;
+        legionspatz = nixpkgs.lib.nixosSystem {
+          pkgs = mkPkgs "x86_64-linux" nixpkgs;
 
-            specialArgs = {
-              inherit
-                self
-                inputs
-                user
-                ;
-            };
-            modules = [
-              ./legionspatz.nix
-            ] ++ gnome;
+          specialArgs = {
+            inherit
+              self
+              inputs
+              user
+              ;
           };
+          modules = [
+            ./legionspatz.nix
+          ]
+          ++ gnome;
+        };
 
+        tischspatz = nixpkgs.lib.nixosSystem {
+          pkgs = mkPkgs "x86_64-linux" nixpkgs;
 
-        tischspatz =
-          nixpkgs.lib.nixosSystem {
-            pkgs = mkPkgs "x86_64-linux" nixpkgs;
-
-            specialArgs = {
-              inherit
-                self
-                inputs
-                user
-                ;
-            };
-            modules = [
-              ./tischspatz.nix
-              ./modules/steam.nix
-            ] ++ gnome;
+          specialArgs = {
+            inherit
+              self
+              inputs
+              user
+              ;
           };
+          modules = [
+            ./tischspatz.nix
+            ./modules/steam.nix
+          ]
+          ++ gnome;
+        };
       };
     };
 }

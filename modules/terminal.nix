@@ -13,7 +13,30 @@
     distrobox
     appimage-run
     tmux
-    neovim
+    # editor
+    (neovim.override {
+      configure = {
+        customRC = ''
+          luafile ${./nvim.lua}
+        '';
+        packages.myPlugins = with pkgs.vimPlugins; {
+          start = [
+            nvim-lspconfig
+            nvim-treesitter.withAllGrammars
+            snacks-nvim
+            oxocarbon-nvim
+          ];
+        };
+
+      };
+    })
+
+    # lsps that I need outside of nix develop projects
+    nixd
+    nixfmt
+    lua-language-server
+    luarocks
+    #editor-end
     man-pages
     man-pages-posix
     btop

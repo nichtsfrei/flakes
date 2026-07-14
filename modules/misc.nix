@@ -21,7 +21,8 @@
 
   users.mutableUsers = true;
 
-  services.openssh.enable = false;
+  services.openssh.enable = true;
+  systemd.services.sshd.wantedBy = pkgs.lib.mkForce [ ];
   services.fwupd.enable = true;
 
   hardware.keyboard.qmk.enable = true;

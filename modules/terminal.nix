@@ -1,47 +1,32 @@
 { pkgs, ... }:
 
+let
+  editorPackages = import ./neovim.nix { inherit pkgs; };
+  tmuxPackages = import ./tmux.nix { inherit pkgs; };
+in
 {
-  environment.systemPackages = with pkgs; [
-    curl
-    git
-    fzf
-    jq
-    ripgrep
-    file
-    fd
-    less
-    distrobox
-    appimage-run
-    tmux
-    # editor
-    (neovim.override {
-      configure = {
-        customRC = ''
-          luafile ${./nvim.lua}
-        '';
-        packages.myPlugins = with pkgs.vimPlugins; {
-          start = [
-            nvim-lspconfig
-            nvim-treesitter.withAllGrammars
-            snacks-nvim
-            oxocarbon-nvim
-          ];
-        };
+  environment.systemPackages =
+    with pkgs;
+    [
+      curl
+      git
+      fzf
+      jq
+      ripgrep
+      file
+      fd
+      less
 
-      };
-    })
+      man-pages
+      man-pages-posix
+      btop
+      gcc
 
-    # lsps that I need outside of nix develop projects
-    nixd
-    nixfmt
-    lua-language-server
-    luarocks
-    #editor-end
-    man-pages
-    man-pages-posix
-    btop
-    gcc
-  ];
+      distrobox
+      appimage-run
+    ]
+    ++ editorPackages
+    ++ tmuxPackages;
   documentation.dev.enable = true;
   documentation.man.cache.enable = true;
 

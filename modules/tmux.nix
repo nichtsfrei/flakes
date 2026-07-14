@@ -7,6 +7,5 @@ let
   '';
 in
 [
-  # tmux with custom configuration
   tmuxWithConfig
 ]

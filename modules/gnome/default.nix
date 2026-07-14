@@ -1,4 +1,8 @@
-{ pkgs, inputs, enable_gdm ? true, ... }:
+{ pkgs, ... }:
+
+let
+  footPackages = import ../foot.nix { inherit pkgs; };
+in
 {
 
   environment.systemPackages = with pkgs; [
@@ -16,8 +20,7 @@
     wl-clipboard
     vlc
     keepassxc
-    foot
-  ];
+  ] ++ footPackages;
 
   environment.gnome.excludePackages = (with pkgs; [
     gnome-terminal # OSC52 issues

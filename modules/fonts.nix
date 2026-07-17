@@ -1,5 +1,5 @@
 { pkgs, ... }:
 {
-  fonts.packages = with pkgs; [ nerd-fonts.monaspace adwaita-fonts];
+  fonts.packages = with pkgs; [ adwaita-fonts ];
 
 }

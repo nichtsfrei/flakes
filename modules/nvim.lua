@@ -124,8 +124,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         map('n', '<C-k>', vim.lsp.buf.signature_help, opts)
 
-        map('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-        map('n', '<leader>rn', vim.lsp.buf.rename, opts)
+        map('n', 'g.', vim.lsp.buf.code_action, opts)
+        map('n', '<leader>r', vim.lsp.buf.rename, opts)
 
         map('n', '[d', vim.diagnostic.goto_prev, opts)
         map('n', ']d', vim.diagnostic.goto_next, opts)
@@ -190,6 +190,16 @@ map('n', 'gy',              function() Snacks.picker.lsp_type_definitions() end,
 map('n', '<leader>ss',      function() Snacks.picker.lsp_symbols() end, { desc = 'LSP Symbols' })
 map('n', '<leader>sS',      function() Snacks.picker.lsp_workspace_symbols() end, { desc = 'LSP Workspace Symbols' })
 
+
+map('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+map("n", "<leader>y", [["+y]])
+map("n", "<leader>p", [["+p]])
+map("n", "n", "nzzzv", { desc = "Next search result (centered)" })
+map("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
+map("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
+map("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
+
 -- theme
 vim.cmd.colorscheme "oxocarbon"
 -- default dark theme but with a 000 bg regardless of theme when in dark mode
@@ -230,3 +240,45 @@ vim.api.nvim_create_autocmd('OptionSet', {
 })
 
 apply_bg()
+
+
+local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
+-- highlight yanked text
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = augroup,
+	callback = function()
+		vim.hl.on_yank()
+	end,
+})
+
+-- return to last cursor position
+vim.api.nvim_create_autocmd("BufReadPost", {
+	group = augroup,
+	desc = "Restore last cursor position",
+	callback = function()
+		if vim.o.diff then -- except in diff mode
+			return
+		end
+
+		local last_pos = vim.api.nvim_buf_get_mark(0, '"') -- {line, col}
+		local last_line = vim.api.nvim_buf_line_count(0)
+
+		local row = last_pos[1]
+		if row < 1 or row > last_line then
+			return
+		end
+
+		pcall(vim.api.nvim_win_set_cursor, 0, last_pos)
+	end,
+})
+-- wrap, linebreak and spellcheck on markdown and text files
+vim.api.nvim_create_autocmd("FileType", {
+	group = augroup,
+	pattern = { "markdown", "text", "gitcommit" },
+	callback = function()
+		vim.opt_local.wrap = true
+		vim.opt_local.linebreak = true
+		vim.opt_local.spell = true
+	end,
+})
+

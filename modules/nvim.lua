@@ -201,7 +201,7 @@ map("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
 map("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 
 -- theme
-vim.cmd.colorscheme "oxocarbon"
+vim.cmd.colorscheme "industry"
 -- default dark theme but with a 000 bg regardless of theme when in dark mode
 -- fuck dark grey
 local function apply_bg()

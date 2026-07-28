@@ -11,7 +11,6 @@ let
           nvim-lspconfig
           nvim-treesitter.withAllGrammars
           snacks-nvim
-          oxocarbon-nvim
         ];
       };
     };
@@ -25,4 +24,6 @@ in
   pkgs.nixfmt
   pkgs.lua-language-server
   pkgs.luarocks
+  pkgs.tree-sitter
+
 ]

@@ -16,6 +16,7 @@ in
       file
       fd
       less
+      bat
 
       man-pages
       man-pages-posix
@@ -24,6 +25,7 @@ in
 
       distrobox
       appimage-run
+      podman-compose
     ]
     ++ editorPackages
     ++ tmuxPackages;

@@ -18,7 +18,6 @@ in
       "audio"
       "video"
       "networkmanager"
-      "docker"
       "libvirtd"
       "qemu-libvirtd"
       "plugdev"

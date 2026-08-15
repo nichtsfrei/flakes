@@ -76,11 +76,13 @@
               inputs
               user
               ;
+            devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
           };
           modules = [
             ./manaspatz.nix
             ./modules/steam.nix
             ./modules/llm.nix
+            ./modules/kanata
           ]
           ++ gnome;
         };

@@ -1,0 +1,103 @@
+
+
+(defsrc
+q w e r t y u i o p
+a s d f g h j k l ;
+z x c v b n m , . /
+lalt spc ralt
+)
+
+(defvar
+tap-time 175
+hold-time 175
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Home row mods
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defalias
+ah (tap-hold $tap-time $hold-time a lmet)
+sh (tap-hold $tap-time $hold-time s lalt)
+dh (tap-hold $tap-time $hold-time d lctl)
+fh (tap-hold $tap-time $hold-time f lsft)
+
+jh (tap-hold $tap-time $hold-time j lsft)
+kh (tap-hold $tap-time $hold-time k lctl)
+lh (tap-hold $tap-time $hold-time l lalt)
+sclh (tap-hold $tap-time $hold-time ; rmet)
+
+)
+(defalias
+  base  (layer-switch base)
+  layer (layer-switch layer)
+)
+
+(deflayer base
+q w e r t y u i o p
+@ah @sh @dh @fh g h @jh @kh @lh @sclh
+z x c v b n m , . /
+@base spc @layer
+)
+
+(deflayer layer
+_ _ _ _ _ _ _ _ _ _
+_ (layer-switch nav) (layer-switch remove) (layer-switch brackets) (layer-switch umlaute) _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _
+@base spc @layer
+)
+
+(deflayer nav
+_ _ _ _ _ home pgdn pgup end _
+_ _ _ _ _ left down up right _
+_ _ _ _ _ _ _ _ _ _
+@base spc @layer
+)
+
+
+(defalias
+rparen S-0
+lparen S-9
+{ S-[
+} S-]
+)
+
+(deflayer brackets
+_ _ _ _ _ del @rparen ] @} _
+_ _ _ _ _ bspc @lparen [ @{ _
+_ _ _ _ _ _ _ _ _ _
+@base spc @layer
+)
+
+(defalias
+ae (unicode ä)
+ae-cap (unicode Ä)
+ue (unicode ü)
+ue-cap (unicode Ü)
+oe (unicode ö)
+oe-cap (unicode Ö)
+ss (unicode ß)
+)
+
+(deflayer umlaute
+_ _ _ _ _ _  _  @ae-cap @ue-cap @oe-cap
+_ _ _ _ _ _ @ss @ae     @ue     @oe
+_ _ _ _ _ _ _ _ _ _ 
+@base spc @layer
+)
+(deflayer remove
+_ _ _ _ _ C-bspc _ _ C-del _
+_ _ _ _ _ bspc _ _ del _
+_ _ _ _ _ A-bspc _ _ A-del _
+@base spc @layer
+)
+
+
+(defvar
+chord-time 150
+)
+
+(defchordsv2
+(z ;) esc                $chord-time all-released ()
+(f j) tab                $chord-time all-released ()
+(a ;) ent                $chord-time all-released ()
+)

@@ -1,5 +1,3 @@
-
-
 (defsrc
 q w e r t y u i o p
 a s d f g h j k l ;
@@ -28,8 +26,8 @@ sclh (tap-hold $tap-time $hold-time ; rmet)
 
 )
 (defalias
-  base  (layer-switch base)
-  layer (layer-switch layer)
+  base  (tap-hold $tap-time $hold-time (layer-switch base) alt)
+  layer  (tap-hold $tap-time $hold-time (layer-switch layer) ralt)
 )
 
 (deflayer base

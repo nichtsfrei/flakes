@@ -7,7 +7,7 @@ lalt spc ralt
 
 (defvar
 tap-time 175
-hold-time 175
+hold-time 225
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -11,6 +11,7 @@ let
           nvim-lspconfig
           nvim-treesitter.withAllGrammars
           snacks-nvim
+          vim-matchup
         ];
       };
     };

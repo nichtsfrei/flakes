@@ -6,6 +6,7 @@
       url = "github:NixOS/nixos-hardware/master";
     };
     llm-agents.url = "github:numtide/llm-agents.nix";
+    nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
   outputs =
@@ -35,6 +36,9 @@
       ];
       gnome = laptop ++ [
         ./modules/gnome
+      ];
+      niri = laptop ++ [
+        ./modules/niri
       ];
       user = {
         handle = "philipp";

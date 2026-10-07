@@ -35,6 +35,8 @@ in
       email = ${email}
     [core]
       editor = nvim
+    [init]
+      defaultBranch = main
     EOF
     chown ${username}:users /home/${username}/.gitconfig
   '';

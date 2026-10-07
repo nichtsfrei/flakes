@@ -16,4 +16,6 @@ with pkgs;
   vlc
   keepassxc
   thunderbird
+  gimp
+  inkscape
 ]

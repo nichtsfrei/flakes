@@ -26,6 +26,9 @@ in
       distrobox
       appimage-run
       podman-compose
+
+      direnv
+      nix-direnv
     ]
     ++ editorPackages
     ++ tmuxPackages;

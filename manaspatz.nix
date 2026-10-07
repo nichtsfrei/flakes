@@ -104,7 +104,6 @@
     luksroot = {
       device = "/dev/nvme0n1p2";
       allowDiscards = true;
-      preLVM = true;
     };
   };
 }

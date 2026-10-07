@@ -2,7 +2,8 @@
 -- nvim-treesitter
 -- snacks-nvim
 -- as well as lsps
---
+-- although I like to jump around, I don't like my editor to do that
+vim.g.loaded_matchparen = 1
 -- setings
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "

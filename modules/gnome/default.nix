@@ -46,7 +46,6 @@ in
   services.gnome.localsearch.enable = false;
   services.gnome.tinysparql.enable = false;
   services.gnome.core-apps.enable = true;
-  services.gnome.core-utilities.enable = true;
 
   services.xserver = {
     enable = false;

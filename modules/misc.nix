@@ -31,8 +31,8 @@
   services.fwupd.enable = true;
 
   hardware.keyboard.qmk.enable = true;
-  hardware.sane.enable = true;
-  hardware.sane.extraBackends = [ pkgs.epkowa ];
+  # hardware.sane.enable = true;
+  # hardware.sane.extraBackends = [ pkgs.epkowa ];
 
   virtualisation = {
     podman = {

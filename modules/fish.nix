@@ -14,7 +14,6 @@
     };
     shellInit = ''
       set EDITOR nvim
-      eval (direnv hook fish)
     '';
     enable = true;
   };

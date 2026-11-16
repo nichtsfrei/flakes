@@ -18,4 +18,5 @@ with pkgs;
   thunderbird
   gimp
   inkscape
+  libreoffice
 ]
